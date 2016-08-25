@@ -41,4 +41,18 @@ class PantomimeTests: XCTestCase {
         }
     }
     
+    func testReadMasterPlaylist() {
+        let bundle = NSBundle(forClass: self.dynamicType)
+        let path = bundle.pathForResource("master", ofType: "m3u8")!
+        
+        let manifestBuilder = ManifestBuilder()
+        
+        let masterPlaylist = manifestBuilder.parseMasterPlaylist(path,
+            onMediaPlaylist:{(playlist: MediaPlaylist) -> Void in
+                print("Playlist found with program id = \(playlist.programId) and bandwidth = \(playlist.bandwidth) using path \(playlist.path)")
+            }, onMediaSegment:nil)
+        
+        XCTAssert(masterPlaylist.playlists.count == 4)
+        
+    }
 }

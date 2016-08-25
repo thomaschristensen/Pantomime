@@ -6,6 +6,9 @@
 import Foundation
 
 public class MediaPlaylist {
+    var programId:Int = 0
+    var bandwidth:Int = 0
+    var path:String?
     var version:Int?
     var targetDuration:Int?
     var mediaSequence:Int?

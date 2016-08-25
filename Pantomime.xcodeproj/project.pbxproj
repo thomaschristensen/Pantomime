@@ -24,6 +24,10 @@
 		5ED0328C1D6F1735006DE1F3 /* StreamReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED0327D1D6F1710006DE1F3 /* StreamReader.swift */; };
 		5ED0328F1D6F17BF006DE1F3 /* media2.m3u8 in Resources */ = {isa = PBXBuildFile; fileRef = 5ED0328D1D6F17BF006DE1F3 /* media2.m3u8 */; };
 		5ED032901D6F17BF006DE1F3 /* media.m3u8 in Resources */ = {isa = PBXBuildFile; fileRef = 5ED0328E1D6F17BF006DE1F3 /* media.m3u8 */; };
+		5ED032921D6F7539006DE1F3 /* MasterPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED032911D6F7539006DE1F3 /* MasterPlaylist.swift */; };
+		5ED032931D6F7539006DE1F3 /* MasterPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED032911D6F7539006DE1F3 /* MasterPlaylist.swift */; };
+		5ED032941D6F7539006DE1F3 /* MasterPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED032911D6F7539006DE1F3 /* MasterPlaylist.swift */; };
+		5ED032961D6F7618006DE1F3 /* master.m3u8 in Resources */ = {isa = PBXBuildFile; fileRef = 5ED032951D6F7618006DE1F3 /* master.m3u8 */; };
 		9E6CAA481C148EC1009D9093 /* Pantomime.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 9E6CAA471C148EC1009D9093 /* Pantomime.podspec */; };
 		9E6CAA4A1C149579009D9093 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 9E6CAA491C149579009D9093 /* LICENSE */; };
 		9EDCE3EF1C09D211002FA4A7 /* Pantomime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EDCE3E41C09D211002FA4A7 /* Pantomime.framework */; };
@@ -52,6 +56,8 @@
 		5ED0327D1D6F1710006DE1F3 /* StreamReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StreamReader.swift; path = sources/StreamReader.swift; sourceTree = "<group>"; };
 		5ED0328D1D6F17BF006DE1F3 /* media2.m3u8 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = media2.m3u8; sourceTree = "<group>"; };
 		5ED0328E1D6F17BF006DE1F3 /* media.m3u8 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = media.m3u8; sourceTree = "<group>"; };
+		5ED032911D6F7539006DE1F3 /* MasterPlaylist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MasterPlaylist.swift; path = sources/MasterPlaylist.swift; sourceTree = "<group>"; };
+		5ED032951D6F7618006DE1F3 /* master.m3u8 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = master.m3u8; sourceTree = "<group>"; };
 		9E195B101C6B766D00D924CB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E4BBDFA1C09EB7F00220716 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		9E4BBDFE1C0A01D000220716 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -107,6 +113,7 @@
 				5ED0327B1D6F1710006DE1F3 /* MediaPlaylist.swift */,
 				5ED0327C1D6F1710006DE1F3 /* StringExtensions.swift */,
 				5ED0327D1D6F1710006DE1F3 /* StreamReader.swift */,
+				5ED032911D6F7539006DE1F3 /* MasterPlaylist.swift */,
 			);
 			name = sources;
 			sourceTree = "<group>";
@@ -140,6 +147,7 @@
 		9EDCE3F21C09D211002FA4A7 /* PantomimeTests */ = {
 			isa = PBXGroup;
 			children = (
+				5ED032951D6F7618006DE1F3 /* master.m3u8 */,
 				5ED0328D1D6F17BF006DE1F3 /* media2.m3u8 */,
 				5ED0328E1D6F17BF006DE1F3 /* media.m3u8 */,
 				9EDCE3F51C09D211002FA4A7 /* Info.plist */,
@@ -309,6 +317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5ED0328F1D6F17BF006DE1F3 /* media2.m3u8 in Resources */,
+				5ED032961D6F7618006DE1F3 /* master.m3u8 in Resources */,
 				5ED032901D6F17BF006DE1F3 /* media.m3u8 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -357,6 +366,7 @@
 				5ED032821D6F1710006DE1F3 /* StreamReader.swift in Sources */,
 				5ED032811D6F1710006DE1F3 /* StringExtensions.swift in Sources */,
 				5ED0327F1D6F1710006DE1F3 /* MediaSegment.swift in Sources */,
+				5ED032921D6F7539006DE1F3 /* MasterPlaylist.swift in Sources */,
 				5ED0327E1D6F1710006DE1F3 /* ManifestBuilder.swift in Sources */,
 				5ED032801D6F1710006DE1F3 /* MediaPlaylist.swift in Sources */,
 			);
@@ -377,6 +387,7 @@
 				5ED0328C1D6F1735006DE1F3 /* StreamReader.swift in Sources */,
 				5ED032891D6F1731006DE1F3 /* StringExtensions.swift in Sources */,
 				5ED032851D6F1728006DE1F3 /* MediaSegment.swift in Sources */,
+				5ED032931D6F7539006DE1F3 /* MasterPlaylist.swift in Sources */,
 				5ED032831D6F1721006DE1F3 /* ManifestBuilder.swift in Sources */,
 				5ED032881D6F172C006DE1F3 /* MediaPlaylist.swift in Sources */,
 			);
@@ -389,6 +400,7 @@
 				5ED0328B1D6F1734006DE1F3 /* StreamReader.swift in Sources */,
 				5ED0328A1D6F1731006DE1F3 /* StringExtensions.swift in Sources */,
 				5ED032861D6F1728006DE1F3 /* MediaSegment.swift in Sources */,
+				5ED032941D6F7539006DE1F3 /* MasterPlaylist.swift in Sources */,
 				5ED032841D6F1722006DE1F3 /* ManifestBuilder.swift in Sources */,
 				5ED032871D6F172B006DE1F3 /* MediaPlaylist.swift in Sources */,
 			);
