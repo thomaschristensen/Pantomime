@@ -2,6 +2,10 @@
 
 Pantomime is a lightweight framework for iOS, OSX and tvOS that can read, parse and write HTTP Live Streaming manifests.
 
+## Latest build
+
+[![Build Status](https://travis-ci.org/thomaschristensen/Pantomime.svg?branch=master)](https://travis-ci.org/thomaschristensen/Pantomime)
+
 ## Installation
 
 You can use [Carthage](https://github.com/Carthage/Carthage) to install Pantomime by adding that to your Cartfile:
