@@ -6,11 +6,11 @@
 import Foundation
 
 public class MediaSegment {
-    var duration:Float?
-    var sequence:Int = 0
-    var subrangeLength:Int?
-    var subrangeStart:Int?
-    var title:String?
-    var discontinuity:Bool = false
-    var uri:NSURL?
+    var duration: Float?
+    var sequence: Int = 0
+    var subrangeLength: Int?
+    var subrangeStart: Int?
+    var title: String?
+    var discontinuity: Bool = false
+    var path: String?
 }

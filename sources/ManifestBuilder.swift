@@ -6,42 +6,46 @@
 import Foundation
 
 public class ManifestBuilder {
-    
     public init() {
-        
     }
 
-    public func parseMasterPlaylist(path: String, onMediaPlaylist: ((playlist:MediaPlaylist) -> Void)?) -> MasterPlaylist {
+    public func parseMasterPlaylist(path: String, onMediaPlaylist:
+        ((playlist: MediaPlaylist) -> Void)?) -> MasterPlaylist {
         var masterPlaylist = MasterPlaylist()
-        var currentMediaPlaylist:MediaPlaylist?
-        
+        var currentMediaPlaylist: MediaPlaylist?
+
         if let aStreamReader = StreamReader(path: path) {
             defer {
                 aStreamReader.close()
             }
             while let line = aStreamReader.nextLine() {
-                if (line.isEmpty) {
+                if line.isEmpty {
                     // Skip empty lines
-                    
-                } else if (line.hasPrefix("#EXT")) {
-                    
+
+                } else if line.hasPrefix("#EXT") {
+
                     // Tags
-                    if (line.hasPrefix("#EXTM3U")) {
+                    if line.hasPrefix("#EXTM3U") {
                         // Ok Do nothing
-                        
-                    } else if (line.hasPrefix("#EXT-X-STREAM-INF")) {
+
+                    } else if line.hasPrefix("#EXT-X-STREAM-INF") {
                         // #EXT-X-STREAM-INF:PROGRAM-ID=1, BANDWIDTH=200000
-                        let programIdString = line.replace("(.*)=(\\d+),(.*)", replacement: "$2")
-                        let bandwidthString = line.replace("(.*),(.*)=(\\d+)(.*)", replacement: "$3")
                         currentMediaPlaylist = MediaPlaylist()
-                        if let currentMediaPlaylistExist = currentMediaPlaylist {
-                            currentMediaPlaylistExist.programId = Int(programIdString)!
-                            currentMediaPlaylistExist.bandwidth = Int(bandwidthString)!
+                        do {
+                            let programIdString = try line.replace("(.*)=(\\d+),(.*)", replacement: "$2")
+                            let bandwidthString = try line.replace("(.*),(.*)=(\\d+)(.*)", replacement: "$3")
+                            if let currentMediaPlaylistExist = currentMediaPlaylist {
+                                currentMediaPlaylistExist.programId = Int(programIdString)!
+                                currentMediaPlaylistExist.bandwidth = Int(bandwidthString)!
+                            }
+                        } catch {
+                            print("Failed to parse program-id and bandwidth on master playlist. Line = \(line)")
                         }
+
                     }
-                } else if (line.hasPrefix("#")) {
+                } else if line.hasPrefix("#") {
                     // Comments are ignored
-                    
+
                 } else {
                     // URI - must be
                     if let currentMediaPlaylistExist = currentMediaPlaylist {
@@ -54,11 +58,11 @@ public class ManifestBuilder {
                 }
             }
         }
-        
+
         return masterPlaylist
     }
-    
-    public func parseMediaPlaylist(path: String, onMediaSegment: ((segment:MediaSegment) -> Void)?) -> MediaPlaylist {
+
+    public func parseMediaPlaylist(path: String, onMediaSegment: ((segment: MediaSegment) -> Void)?) -> MediaPlaylist {
 
         var mediaPlaylist = MediaPlaylist()
         var currentSegment: MediaSegment?
@@ -70,59 +74,82 @@ public class ManifestBuilder {
                 aStreamReader.close()
             }
             while let line = aStreamReader.nextLine() {
-                if (line.isEmpty) {
+                if line.isEmpty {
                     // Skip empty lines
 
-                } else if (line.hasPrefix("#EXT")) {
+                } else if line.hasPrefix("#EXT") {
 
                     // Tags
-                    if (line.hasPrefix("#EXTM3U")) {
+                    if line.hasPrefix("#EXTM3U") {
 
                         // Ok Do nothing
-                    } else if (line.hasPrefix("#EXT-X-VERSION")) {
-                        let version = line.replace("(.*):(\\d+)(.*)", replacement: "$2")
-                        mediaPlaylist.version = Int(version)
-
-                    } else if (line.hasPrefix("#EXT-X-TARGETDURATION")) {
-                        let durationString = line.replace("(.*):(\\d+)(.*)", replacement: "$2")
-                        mediaPlaylist.targetDuration = Int(durationString)
-
-                    } else if (line.hasPrefix("#EXT-X-MEDIA-SEQUENCE")) {
-                        let mediaSequence = line.replace("(.*):(\\d+)(.*)", replacement: "$2")
-                        if let mediaSequenceExtracted = Int(mediaSequence) {
-                            mediaPlaylist.mediaSequence = mediaSequenceExtracted
-                            currentSequence = mediaSequenceExtracted
+                    } else if line.hasPrefix("#EXT-X-VERSION") {
+                        do {
+                            let version = try line.replace("(.*):(\\d+)(.*)", replacement: "$2")
+                            mediaPlaylist.version = Int(version)
+                        } catch {
+                            print("Failed to parse the version of media playlist. Line = \(line)")
                         }
 
-                    } else if (line.hasPrefix("#EXTINF")) {
-                        let segmentDurationString = line.replace("(.*):(\\d.*),(.*)", replacement: "$2")
-                        let segmentTitle = line.replace("(.*):(\\d.*),(.*)", replacement: "$3")
+                    } else if line.hasPrefix("#EXT-X-TARGETDURATION") {
+                        do {
+                            let durationString = try line.replace("(.*):(\\d+)(.*)", replacement: "$2")
+                            mediaPlaylist.targetDuration = Int(durationString)
+                        } catch {
+                            print("Failed to parse the target duration of media playlist. Line = \(line)")
+                        }
+
+                    } else if line.hasPrefix("#EXT-X-MEDIA-SEQUENCE") {
+                        do {
+                            let mediaSequence = try line.replace("(.*):(\\d+)(.*)", replacement: "$2")
+                            if let mediaSequenceExtracted = Int(mediaSequence) {
+                                mediaPlaylist.mediaSequence = mediaSequenceExtracted
+                                currentSequence = mediaSequenceExtracted
+                            }
+                        } catch {
+                            print("Failed to parse the media sequence in media playlist. Line = \(line)")
+                        }
+
+                    } else if line.hasPrefix("#EXTINF") {
                         currentSegment = MediaSegment()
-                        currentSegment!.duration = Float(segmentDurationString)
-                        currentSegment!.title = segmentTitle
-
-                    } else if (line.hasPrefix("#EXT-X-BYTERANGE")) {
-                        if (line.containsString("@")) {
-                            let subrangeLength = line.replace("(.*):(\\d.*)@(.*)", replacement: "$2")
-                            let subrangeStart = line.replace("(.*):(\\d.*)@(.*)", replacement: "$3")
-                            currentSegment!.subrangeLength = Int(subrangeLength)
-                            currentSegment!.subrangeStart = Int(subrangeStart)
-                        } else {
-                            let subrangeLength = line.replace("(.*):(\\d.*)", replacement: "$2")
-                            currentSegment!.subrangeLength = Int(subrangeLength)
-                            currentSegment!.subrangeStart = nil
+                        do {
+                            let segmentDurationString = try line.replace("(.*):(\\d.*),(.*)", replacement: "$2")
+                            let segmentTitle = try line.replace("(.*):(\\d.*),(.*)", replacement: "$3")
+                            currentSegment!.duration = Float(segmentDurationString)
+                            currentSegment!.title = segmentTitle
+                        } catch {
+                            print("Failed to parse the segment duration and title. Line = \(line)")
                         }
-                    } else if (line.hasPrefix("#EXT-X-DISCONTINUITY")) {
+                    } else if line.hasPrefix("#EXT-X-BYTERANGE") {
+                        if line.containsString("@") {
+                            do {
+                                let subrangeLength = try line.replace("(.*):(\\d.*)@(.*)", replacement: "$2")
+                                let subrangeStart = try line.replace("(.*):(\\d.*)@(.*)", replacement: "$3")
+                                currentSegment!.subrangeLength = Int(subrangeLength)
+                                currentSegment!.subrangeStart = Int(subrangeStart)
+                            } catch {
+                                print("Failed to parse byte range. Line = \(line)")
+                            }
+                        } else {
+                            do {
+                                let subrangeLength = try line.replace("(.*):(\\d.*)", replacement: "$2")
+                                currentSegment!.subrangeLength = Int(subrangeLength)
+                                currentSegment!.subrangeStart = nil
+                            } catch {
+                                print("Failed to parse the byte range. Line = \(line)")
+                            }
+                        }
+                    } else if line.hasPrefix("#EXT-X-DISCONTINUITY") {
                         currentSegment!.discontinuity = true
                     }
 
-                } else if (line.hasPrefix("#")) {
+                } else if line.hasPrefix("#") {
                     // Comments are ignored
 
                 } else {
                     // URI - must be
                     if let currentSegmentExists = currentSegment {
-                        currentSegmentExists.uri = NSURL(string: line)
+                        currentSegmentExists.path = line
                         currentSegmentExists.sequence = currentSequence
                         currentSequence += 1
                         mediaPlaylist.addSegment(currentSegmentExists)
@@ -134,6 +161,6 @@ public class ManifestBuilder {
             }
         }
 
-        return mediaPlaylist;
+        return mediaPlaylist
     }
 }

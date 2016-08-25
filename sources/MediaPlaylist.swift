@@ -6,12 +6,12 @@
 import Foundation
 
 public class MediaPlaylist {
-    var programId:Int = 0
-    var bandwidth:Int = 0
-    var path:String?
-    var version:Int?
-    var targetDuration:Int?
-    var mediaSequence:Int?
+    var programId: Int = 0
+    var bandwidth: Int = 0
+    var path: String?
+    var version: Int?
+    var targetDuration: Int?
+    var mediaSequence: Int?
     var segments = [MediaSegment]()
 
     public func addSegment(segment: MediaSegment) {
@@ -19,7 +19,7 @@ public class MediaPlaylist {
     }
 
     public func duration() -> Float {
-        var dur:Float = 0.0
+        var dur: Float = 0.0
         for item in segments {
             dur = dur + item.duration!
         }

@@ -9,17 +9,14 @@ import Foundation
 extension String {
 
     // String.replace(); similar to JavaScript's String.replace() and Ruby's String.gsub()
-    func replace(pattern: String, replacement: String) -> String {
+    func replace(pattern: String, replacement: String) throws -> String {
 
-        let regex = try! NSRegularExpression(
-            pattern: pattern,
-            options: [.CaseInsensitive]
-        )
+        let regex = try NSRegularExpression(pattern: pattern, options: [.CaseInsensitive])
 
         return regex.stringByReplacingMatchesInString(
             self,
             options: [.WithTransparentBounds],
-            range: NSMakeRange(0, self.characters.count),
+            range: NSRange(location: 0, length: self.characters.count),
             withTemplate: replacement
         )
     }

@@ -9,9 +9,9 @@
 import Foundation
 
 public class MasterPlaylist {
-    var path:String?
+    var path: String?
     var playlists = [MediaPlaylist]()
-    
+
     public func addPlaylist(playlist: MediaPlaylist) {
         playlists.append(playlist)
     }

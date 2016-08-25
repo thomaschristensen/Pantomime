@@ -16,7 +16,7 @@ class PantomimeTests: XCTestCase {
         let path = bundle.pathForResource("media", ofType: "m3u8")!
 
         let manifestBuilder = ManifestBuilder()
-        let mediaPlaylist = manifestBuilder.parseMediaPlaylist(path, onMediaSegment:{
+        let mediaPlaylist = manifestBuilder.parseMediaPlaylist(path, onMediaSegment: {
             (segment: MediaSegment) -> Void in
             print("Segment found \(segment.sequence)")
         })
@@ -30,7 +30,7 @@ class PantomimeTests: XCTestCase {
         XCTAssert(mediaPlaylist.segments[1].subrangeLength == 100)
         XCTAssert(mediaPlaylist.segments[1].subrangeStart == nil)
         XCTAssert(mediaPlaylist.segments[2].duration == Float(3.003))
-        XCTAssert(mediaPlaylist.segments[2].uri! == NSURL(string:"http://media.example.com/third.ts"))
+        XCTAssert(mediaPlaylist.segments[2].path! == "http://media.example.com/third.ts")
         XCTAssert(mediaPlaylist.duration() == Float(21.021))
 
         if let path2 = bundle.pathForResource("media2", ofType: "m3u8") {
@@ -48,11 +48,10 @@ class PantomimeTests: XCTestCase {
         let manifestBuilder = ManifestBuilder()
         
         let masterPlaylist = manifestBuilder.parseMasterPlaylist(path,
-            onMediaPlaylist:{(playlist: MediaPlaylist) -> Void in
+            onMediaPlaylist: {(playlist: MediaPlaylist) -> Void in
                 print("Playlist found with program id = \(playlist.programId) and bandwidth = \(playlist.bandwidth) using path \(playlist.path)")
             })
         
         XCTAssert(masterPlaylist.playlists.count == 4)
-        
     }
 }
