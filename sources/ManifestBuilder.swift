@@ -11,7 +11,7 @@ public class ManifestBuilder {
         
     }
 
-    public func parseMasterPlaylist(path: String, onMediaPlaylist: ((playlist:MediaPlaylist) -> Void)?, onMediaSegment: ((segment:MediaSegment) -> Void)?) -> MasterPlaylist {
+    public func parseMasterPlaylist(path: String, onMediaPlaylist: ((playlist:MediaPlaylist) -> Void)?) -> MasterPlaylist {
         var masterPlaylist = MasterPlaylist()
         var currentMediaPlaylist:MediaPlaylist?
         

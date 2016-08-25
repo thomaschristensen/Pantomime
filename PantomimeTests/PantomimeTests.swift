@@ -50,7 +50,7 @@ class PantomimeTests: XCTestCase {
         let masterPlaylist = manifestBuilder.parseMasterPlaylist(path,
             onMediaPlaylist:{(playlist: MediaPlaylist) -> Void in
                 print("Playlist found with program id = \(playlist.programId) and bandwidth = \(playlist.bandwidth) using path \(playlist.path)")
-            }, onMediaSegment:nil)
+            })
         
         XCTAssert(masterPlaylist.playlists.count == 4)
         
