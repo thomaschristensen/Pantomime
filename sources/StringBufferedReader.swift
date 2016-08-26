@@ -22,7 +22,7 @@ class StringBufferedReader: BufferedReader {
     }
 
     func readLine() -> String? {
-        if _buffer.isEmpty || _buffer.count <= _line {
+        if (_buffer.isEmpty || _buffer.count <= _line) {
             return nil
         }
         let result = _buffer[_line]
