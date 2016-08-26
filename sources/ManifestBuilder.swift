@@ -10,15 +10,15 @@ public class ManifestBuilder {
     }
 
     public func parseMasterPlaylist(path: String, onMediaPlaylist:
-        ((playlist: MediaPlaylist) -> Void)?) -> MasterPlaylist {
+            ((playlist: MediaPlaylist) -> Void)?) -> MasterPlaylist {
         var masterPlaylist = MasterPlaylist()
         var currentMediaPlaylist: MediaPlaylist?
 
-        if let aStreamReader = StreamReader(path: path) {
+        if let aStreamReader = ReaderBuilder.createFileReader(path) {
             defer {
                 aStreamReader.close()
             }
-            while let line = aStreamReader.nextLine() {
+            while let line = aStreamReader.readLine() {
                 if line.isEmpty {
                     // Skip empty lines
 
@@ -69,11 +69,11 @@ public class ManifestBuilder {
         var currentURI: String?
         var currentSequence = 0
 
-        if let aStreamReader = StreamReader(path: path) {
+        if let aStreamReader = ReaderBuilder.createFileReader(path) {
             defer {
                 aStreamReader.close()
             }
-            while let line = aStreamReader.nextLine() {
+            while let line = aStreamReader.readLine() {
                 if line.isEmpty {
                     // Skip empty lines
 

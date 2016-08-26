@@ -54,4 +54,25 @@ class PantomimeTests: XCTestCase {
         
         XCTAssert(masterPlaylist.playlists.count == 4)
     }
+/*
+    func testReadFromString() {
+        let bundle = NSBundle(forClass: self.dynamicType)
+        let file = bundle.pathForResource("master", ofType: "m3u8")!
+        let path = NSURL(fileURLWithPath: file)
+        do {
+
+            let manifestText = try String(contentsOfURL: path, encoding: NSUTF8StringEncoding)
+            let manifestBuilder = ManifestBuilder()
+            let masterPlaylist = manifestBuilder.parseMasterPlaylist(string: manifestText,
+                    onMediaPlaylist: {(playlist: MediaPlaylist) -> Void in
+                        print("Playlist found with program id = \(playlist.programId) and bandwidth = \(playlist.bandwidth) using path \(playlist.path)")
+                    })
+            
+            XCTAssert(masterPlaylist.playlists.count == 4)
+
+        } catch {
+            XCTFail("Failed to read master playlist file")
+        }
+    }
+    */
 }

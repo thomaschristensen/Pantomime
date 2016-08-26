@@ -28,6 +28,22 @@
 		5ED032931D6F7539006DE1F3 /* MasterPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED032911D6F7539006DE1F3 /* MasterPlaylist.swift */; };
 		5ED032941D6F7539006DE1F3 /* MasterPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED032911D6F7539006DE1F3 /* MasterPlaylist.swift */; };
 		5ED032961D6F7618006DE1F3 /* master.m3u8 in Resources */ = {isa = PBXBuildFile; fileRef = 5ED032951D6F7618006DE1F3 /* master.m3u8 */; };
+		7FBCA01861BCBAD836754D91 /* BufferedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCA7524566A8DB2BF29D18 /* BufferedReader.swift */; };
+		7FBCA12210B4B6E15ACC9CF4 /* FileBufferedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCAA92EB45D9DC1A4CF4F8 /* FileBufferedReader.swift */; };
+		7FBCA14112A0B1181327AE34 /* ReaderBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCA57FE68D569B87085C1C /* ReaderBuilder.swift */; };
+		7FBCA1C1D71AE998D05AA676 /* BufferedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCA7524566A8DB2BF29D18 /* BufferedReader.swift */; };
+		7FBCA33CDC53B6E4F9AB5F51 /* ReaderBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCA57FE68D569B87085C1C /* ReaderBuilder.swift */; };
+		7FBCA4B35D721AFC85AB3704 /* ReaderBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCA57FE68D569B87085C1C /* ReaderBuilder.swift */; };
+		7FBCA52B2472D181C3F7FA78 /* StringBufferedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCAE7E764664D63A972B9B /* StringBufferedReader.swift */; };
+		7FBCA5B1F6EA5907F1B1E3D5 /* StringBufferedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCAE7E764664D63A972B9B /* StringBufferedReader.swift */; };
+		7FBCA6A75A163A8F8C71BBBF /* URLBufferedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCAF4CE125934957794DC8 /* URLBufferedReader.swift */; };
+		7FBCA727A2C307F0E0B476DA /* URLBufferedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCAF4CE125934957794DC8 /* URLBufferedReader.swift */; };
+		7FBCA81E63E9441F3AC22BB7 /* ReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCA10A0EB4EAA0CD4AB5EF /* ReaderTests.swift */; };
+		7FBCA9B51E66BC1C741A5503 /* FileBufferedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCAA92EB45D9DC1A4CF4F8 /* FileBufferedReader.swift */; };
+		7FBCA9B71F2492539D8F325D /* FileBufferedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCAA92EB45D9DC1A4CF4F8 /* FileBufferedReader.swift */; };
+		7FBCA9C32236D17D0F12EFE1 /* URLBufferedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCAF4CE125934957794DC8 /* URLBufferedReader.swift */; };
+		7FBCAA3C3B48A7187153E8AE /* BufferedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCA7524566A8DB2BF29D18 /* BufferedReader.swift */; };
+		7FBCAEE3C129261DB7CA78E0 /* StringBufferedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCAE7E764664D63A972B9B /* StringBufferedReader.swift */; };
 		9E6CAA481C148EC1009D9093 /* Pantomime.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 9E6CAA471C148EC1009D9093 /* Pantomime.podspec */; };
 		9E6CAA4A1C149579009D9093 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 9E6CAA491C149579009D9093 /* LICENSE */; };
 		9EDCE3EF1C09D211002FA4A7 /* Pantomime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EDCE3E41C09D211002FA4A7 /* Pantomime.framework */; };
@@ -58,6 +74,12 @@
 		5ED0328E1D6F17BF006DE1F3 /* media.m3u8 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = media.m3u8; sourceTree = "<group>"; };
 		5ED032911D6F7539006DE1F3 /* MasterPlaylist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MasterPlaylist.swift; path = sources/MasterPlaylist.swift; sourceTree = "<group>"; };
 		5ED032951D6F7618006DE1F3 /* master.m3u8 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = master.m3u8; sourceTree = "<group>"; };
+		7FBCA10A0EB4EAA0CD4AB5EF /* ReaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReaderTests.swift; sourceTree = "<group>"; };
+		7FBCA57FE68D569B87085C1C /* ReaderBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReaderBuilder.swift; sourceTree = "<group>"; };
+		7FBCA7524566A8DB2BF29D18 /* BufferedReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferedReader.swift; sourceTree = "<group>"; };
+		7FBCAA92EB45D9DC1A4CF4F8 /* FileBufferedReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileBufferedReader.swift; sourceTree = "<group>"; };
+		7FBCAE7E764664D63A972B9B /* StringBufferedReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringBufferedReader.swift; sourceTree = "<group>"; };
+		7FBCAF4CE125934957794DC8 /* URLBufferedReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLBufferedReader.swift; sourceTree = "<group>"; };
 		9E195B101C6B766D00D924CB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E4BBDFA1C09EB7F00220716 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		9E4BBDFE1C0A01D000220716 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -114,6 +136,11 @@
 				5ED0327C1D6F1710006DE1F3 /* StringExtensions.swift */,
 				5ED0327D1D6F1710006DE1F3 /* StreamReader.swift */,
 				5ED032911D6F7539006DE1F3 /* MasterPlaylist.swift */,
+				7FBCA7524566A8DB2BF29D18 /* BufferedReader.swift */,
+				7FBCA57FE68D569B87085C1C /* ReaderBuilder.swift */,
+				7FBCAE7E764664D63A972B9B /* StringBufferedReader.swift */,
+				7FBCAF4CE125934957794DC8 /* URLBufferedReader.swift */,
+				7FBCAA92EB45D9DC1A4CF4F8 /* FileBufferedReader.swift */,
 			);
 			name = sources;
 			sourceTree = "<group>";
@@ -152,6 +179,7 @@
 				5ED0328E1D6F17BF006DE1F3 /* media.m3u8 */,
 				9EDCE3F51C09D211002FA4A7 /* Info.plist */,
 				9EDCE3F31C09D211002FA4A7 /* PantomimeTests.swift */,
+				7FBCA10A0EB4EAA0CD4AB5EF /* ReaderTests.swift */,
 			);
 			path = PantomimeTests;
 			sourceTree = "<group>";
@@ -383,6 +411,11 @@
 				5ED032921D6F7539006DE1F3 /* MasterPlaylist.swift in Sources */,
 				5ED0327E1D6F1710006DE1F3 /* ManifestBuilder.swift in Sources */,
 				5ED032801D6F1710006DE1F3 /* MediaPlaylist.swift in Sources */,
+				7FBCA1C1D71AE998D05AA676 /* BufferedReader.swift in Sources */,
+				7FBCA33CDC53B6E4F9AB5F51 /* ReaderBuilder.swift in Sources */,
+				7FBCA5B1F6EA5907F1B1E3D5 /* StringBufferedReader.swift in Sources */,
+				7FBCA9C32236D17D0F12EFE1 /* URLBufferedReader.swift in Sources */,
+				7FBCA9B71F2492539D8F325D /* FileBufferedReader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,6 +424,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EDCE3F41C09D211002FA4A7 /* PantomimeTests.swift in Sources */,
+				7FBCA81E63E9441F3AC22BB7 /* ReaderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +438,11 @@
 				5ED032931D6F7539006DE1F3 /* MasterPlaylist.swift in Sources */,
 				5ED032831D6F1721006DE1F3 /* ManifestBuilder.swift in Sources */,
 				5ED032881D6F172C006DE1F3 /* MediaPlaylist.swift in Sources */,
+				7FBCAA3C3B48A7187153E8AE /* BufferedReader.swift in Sources */,
+				7FBCA4B35D721AFC85AB3704 /* ReaderBuilder.swift in Sources */,
+				7FBCA52B2472D181C3F7FA78 /* StringBufferedReader.swift in Sources */,
+				7FBCA727A2C307F0E0B476DA /* URLBufferedReader.swift in Sources */,
+				7FBCA12210B4B6E15ACC9CF4 /* FileBufferedReader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +456,11 @@
 				5ED032941D6F7539006DE1F3 /* MasterPlaylist.swift in Sources */,
 				5ED032841D6F1722006DE1F3 /* ManifestBuilder.swift in Sources */,
 				5ED032871D6F172B006DE1F3 /* MediaPlaylist.swift in Sources */,
+				7FBCA01861BCBAD836754D91 /* BufferedReader.swift in Sources */,
+				7FBCA14112A0B1181327AE34 /* ReaderBuilder.swift in Sources */,
+				7FBCAEE3C129261DB7CA78E0 /* StringBufferedReader.swift in Sources */,
+				7FBCA6A75A163A8F8C71BBBF /* URLBufferedReader.swift in Sources */,
+				7FBCA9B51E66BC1C741A5503 /* FileBufferedReader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
