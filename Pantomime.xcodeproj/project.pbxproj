@@ -74,12 +74,12 @@
 		5ED0328E1D6F17BF006DE1F3 /* media.m3u8 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = media.m3u8; sourceTree = "<group>"; };
 		5ED032911D6F7539006DE1F3 /* MasterPlaylist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MasterPlaylist.swift; path = sources/MasterPlaylist.swift; sourceTree = "<group>"; };
 		5ED032951D6F7618006DE1F3 /* master.m3u8 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = master.m3u8; sourceTree = "<group>"; };
-		7FBCA03857771FD1265B089F /* FileBufferedReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileBufferedReader.swift; sourceTree = "<group>"; };
+		7FBCA03857771FD1265B089F /* FileBufferedReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileBufferedReader.swift; path = sources/FileBufferedReader.swift; sourceTree = "<group>"; };
 		7FBCA10A0EB4EAA0CD4AB5EF /* ReaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReaderTests.swift; sourceTree = "<group>"; };
-		7FBCA22C61E0D299DF542F4B /* StringBufferedReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringBufferedReader.swift; sourceTree = "<group>"; };
-		7FBCAAA79D01BF5CEBA7261A /* URLBufferedReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLBufferedReader.swift; sourceTree = "<group>"; };
-		7FBCAAE76466B9E53DA130F3 /* BufferedReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferedReader.swift; sourceTree = "<group>"; };
-		7FBCAFFB2E9DF6E75D5AF46D /* ReaderBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReaderBuilder.swift; sourceTree = "<group>"; };
+		7FBCA22C61E0D299DF542F4B /* StringBufferedReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringBufferedReader.swift; path = sources/StringBufferedReader.swift; sourceTree = "<group>"; };
+		7FBCAAA79D01BF5CEBA7261A /* URLBufferedReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = URLBufferedReader.swift; path = sources/URLBufferedReader.swift; sourceTree = "<group>"; };
+		7FBCAAE76466B9E53DA130F3 /* BufferedReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BufferedReader.swift; path = sources/BufferedReader.swift; sourceTree = "<group>"; };
+		7FBCAFFB2E9DF6E75D5AF46D /* ReaderBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReaderBuilder.swift; path = sources/ReaderBuilder.swift; sourceTree = "<group>"; };
 		9E195B101C6B766D00D924CB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E4BBDFA1C09EB7F00220716 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		9E4BBDFE1C0A01D000220716 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
