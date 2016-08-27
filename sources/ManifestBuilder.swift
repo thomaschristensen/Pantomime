@@ -5,7 +5,15 @@
 
 import Foundation
 
+/**
+* Parses HTTP Live Streaming manifest files
+* Use a BufferedReader to let the parser read from various sources.
+*/
 public class ManifestBuilder {
+
+    /**
+    * Parses Master playlist manifests
+    */
     private func parseMasterPlaylist(reader: BufferedReader, onMediaPlaylist:
             ((playlist: MediaPlaylist) -> Void)?) -> MasterPlaylist {
         var masterPlaylist = MasterPlaylist()
@@ -57,33 +65,11 @@ public class ManifestBuilder {
         return masterPlaylist
     }
 
-    public func parseMasterPlaylistFromString(string: String, onMediaPlaylist:
-                ((playlist: MediaPlaylist) -> Void)? = nil) -> MasterPlaylist {
-        return parseMasterPlaylist(StringBufferedReader(string: string), onMediaPlaylist: onMediaPlaylist)
-    }
-
-    public func parseMasterPlaylist(path: String, onMediaPlaylist:
-            ((playlist: MediaPlaylist) -> Void)?) -> MasterPlaylist {
-
-        if let aStreamReader = ReaderBuilder.createFileReader(path) {
-            return parseMasterPlaylist(aStreamReader, onMediaPlaylist: onMediaPlaylist)
-        }
-        return MasterPlaylist() // TODO: Throw exception
-    }
-
-    public func parseMediaPlaylistFromString(string: String, onMediaSegment:
-                ((segment: MediaSegment) -> Void)? = nil) -> MediaPlaylist {
-        return parseMediaPlaylist(StringBufferedReader(string: string), onMediaSegment: onMediaSegment)
-    }
-
-    public func parseMediaPlaylist(path: String, onMediaSegment: ((segment: MediaSegment) -> Void)?) -> MediaPlaylist {
-        if let aStreamReader = ReaderBuilder.createFileReader(path) {
-            return parseMediaPlaylist(aStreamReader, onMediaSegment: onMediaSegment)
-        }
-        return MediaPlaylist() // TODO: Throw exception
-    }
-
-    private func parseMediaPlaylist(reader: BufferedReader, onMediaSegment: ((segment: MediaSegment) -> Void)?) -> MediaPlaylist {
+    /**
+    * Parses Media Playlist manifests
+    */
+    private func parseMediaPlaylist(reader: BufferedReader,
+                                    onMediaSegment: ((segment: MediaSegment) -> Void)?) -> MediaPlaylist {
         var mediaPlaylist = MediaPlaylist()
         var currentSegment: MediaSegment?
         var currentURI: String?
@@ -181,5 +167,65 @@ public class ManifestBuilder {
         }
 
         return mediaPlaylist
+    }
+
+    /**
+    * Parses the master playlist manifest from a string document.
+    *
+    * Convenience method that uses a StringBufferedReader as source for the manifest.
+    */
+    public func parseMasterPlaylistFromString(string: String, onMediaPlaylist:
+                ((playlist: MediaPlaylist) -> Void)? = nil) -> MasterPlaylist {
+        return parseMasterPlaylist(StringBufferedReader(string: string), onMediaPlaylist: onMediaPlaylist)
+    }
+
+    /**
+    * Parses the master playlist manifest from a file.
+    *
+    * Convenience method that uses a FileBufferedReader as source for the manifest.
+    */
+    public func parseMasterPlaylistFromFile(path: String, onMediaPlaylist:
+                ((playlist: MediaPlaylist) -> Void)? = nil) -> MasterPlaylist {
+        return parseMasterPlaylist(FileBufferedReader(path: path), onMediaPlaylist: onMediaPlaylist)
+    }
+
+    /**
+    * Parses the master playlist manifest requested synchronous from a URL
+    *
+    * Convenience method that uses a URLBufferedReader as source for the manifest.
+    */
+    public func parseMasterPlaylistFromURL(url: NSURL, onMediaPlaylist:
+                ((playlist: MediaPlaylist) -> Void)? = nil) -> MasterPlaylist {
+        return parseMasterPlaylist(URLBufferedReader(uri: url), onMediaPlaylist: onMediaPlaylist)
+    }
+
+    /**
+    * Parses the media playlist manifest from a string document.
+    *
+    * Convenience method that uses a StringBufferedReader as source for the manifest.
+    */
+    public func parseMediaPlaylistFromString(string: String, onMediaSegment:
+                ((segment: MediaSegment) -> Void)? = nil) -> MediaPlaylist {
+        return parseMediaPlaylist(StringBufferedReader(string: string), onMediaSegment: onMediaSegment)
+    }
+
+    /**
+    * Parses the media playlist manifest from a file document.
+    *
+    * Convenience method that uses a FileBufferedReader as source for the manifest.
+    */
+    public func parseMediaPlaylistFromFile(path: String, onMediaSegment:
+                ((segment: MediaSegment) -> Void)? = nil) -> MediaPlaylist {
+        return parseMediaPlaylist(FileBufferedReader(path: path), onMediaSegment: onMediaSegment)
+    }
+
+    /**
+    * Parses the media playlist manifest requested synchronous from a URL
+    *
+    * Convenience method that uses a URLBufferedReader as source for the manifest.
+    */
+    public func parseMediaPlaylistFromURL(url: NSURL, onMediaSegment:
+                ((segment: MediaSegment) -> Void)? = nil) -> MediaPlaylist {
+        return parseMediaPlaylist(URLBufferedReader(uri: url), onMediaSegment: onMediaSegment)
     }
 }
