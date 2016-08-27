@@ -6,9 +6,6 @@
 import Foundation
 
 public class ManifestBuilder {
-    public init() {
-    }
-
     private func parseMasterPlaylist(reader: BufferedReader, onMediaPlaylist:
             ((playlist: MediaPlaylist) -> Void)?) -> MasterPlaylist {
         var masterPlaylist = MasterPlaylist()
@@ -60,6 +57,11 @@ public class ManifestBuilder {
         return masterPlaylist
     }
 
+    public func parseMasterPlaylistFromString(string: String, onMediaPlaylist:
+                ((playlist: MediaPlaylist) -> Void)? = nil) -> MasterPlaylist {
+        return parseMasterPlaylist(StringBufferedReader(string: string), onMediaPlaylist: onMediaPlaylist)
+    }
+
     public func parseMasterPlaylist(path: String, onMediaPlaylist:
             ((playlist: MediaPlaylist) -> Void)?) -> MasterPlaylist {
 
@@ -67,6 +69,11 @@ public class ManifestBuilder {
             return parseMasterPlaylist(aStreamReader, onMediaPlaylist: onMediaPlaylist)
         }
         return MasterPlaylist() // TODO: Throw exception
+    }
+
+    public func parseMediaPlaylistFromString(string: String, onMediaSegment:
+                ((segment: MediaSegment) -> Void)? = nil) -> MediaPlaylist {
+        return parseMediaPlaylist(StringBufferedReader(string: string), onMediaSegment: onMediaSegment)
     }
 
     public func parseMediaPlaylist(path: String, onMediaSegment: ((segment: MediaSegment) -> Void)?) -> MediaPlaylist {
