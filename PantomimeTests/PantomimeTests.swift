@@ -77,7 +77,7 @@ class PantomimeTests: XCTestCase {
         }
     }
 
-    func testReadWorldParsing() {
+    func testRealWorldParsing() {
         let manifestBuilder = ManifestBuilder()
 
         // Keep baseURL separate to contruct the nested media playlist URL's
@@ -126,7 +126,7 @@ class PantomimeTests: XCTestCase {
                                         if let mepDataFound = mepData,
                                         mepManifest = String(data: mepDataFound, encoding: NSUTF8StringEncoding) {
                                             let mediaPlaylist = manifestBuilder.parseMediaPlaylistFromString(mepManifest)
-                                            XCTAssertEqual(181,mediaPlaylist.segments.count)
+                                            XCTAssertEqual(181, mediaPlaylist.segments.count)
                                         }
 
                                         // In case we have requested, parsed and validated the last one
@@ -154,6 +154,41 @@ class PantomimeTests: XCTestCase {
                 print("Error: \(error.localizedDescription)")
             }
             task.cancel()
+        }
+    }
+
+    func testParsingJustUsingStringSource() {
+        let builder = ManifestBuilder()
+
+        // Check using String with contentsOfURL
+        do {
+            if let url = NSURL(string: "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8") {
+                let content = try String(contentsOfURL: url, encoding: NSUTF8StringEncoding)
+                let master = builder.parseMasterPlaylistFromString(content)
+                XCTAssertEqual(4, master.playlists.count, "Number of media playlists in master does not match")
+            } else {
+                XCTFail("Failed to create plain URL to bipbopall,m3u8")
+            }
+        } catch {
+            XCTFail("Failed to just use string to read from various sources")
+        }
+    }
+
+    func testFullParse() {
+        let builder = ManifestBuilder()
+        if let url = NSURL(string: "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8") {
+            print("Parsing master playlist at \(url)")
+            let manifest = builder.parse(url, onMediaPlaylist: {
+                (media: MediaPlaylist) -> Void in
+                print(" - Parsing media playlist at \(media.path!)")
+            }, onMediaSegment: {
+                (segment: MediaSegment) -> Void in
+                let mediaManifestURL = url.URLByReplacingLastPathComponent(segment.mediaPlaylist!.path!)
+                let segmentURL = mediaManifestURL!.URLByReplacingLastPathComponent(segment.path!)
+                print("    - Segment at \(segmentURL!.absoluteString)")
+            })
+            XCTAssertEqual(4, manifest.playlists.count, "Number of media playlists in master does not match")
+            XCTAssertEqual(181, manifest.playlists[3].segments.count, "Segments not correctly parsed")
         }
     }
 }

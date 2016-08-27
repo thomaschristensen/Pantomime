@@ -6,6 +6,7 @@
 import Foundation
 
 public class MediaSegment {
+    var mediaPlaylist: MediaPlaylist?
     var duration: Float?
     var sequence: Int = 0
     var subrangeLength: Int?

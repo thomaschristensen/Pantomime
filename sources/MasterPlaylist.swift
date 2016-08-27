@@ -15,5 +15,4 @@ public class MasterPlaylist {
     public func addPlaylist(playlist: MediaPlaylist) {
         playlists.append(playlist)
     }
-
 }

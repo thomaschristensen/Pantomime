@@ -31,6 +31,7 @@
 		7FBCA08CA592BD0DC04B8FE5 /* StringBufferedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCA22C61E0D299DF542F4B /* StringBufferedReader.swift */; };
 		7FBCA092389AE5D6DF3A72EB /* ReaderBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCAFFB2E9DF6E75D5AF46D /* ReaderBuilder.swift */; };
 		7FBCA48C54BDA0AB70B73393 /* FileBufferedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCA03857771FD1265B089F /* FileBufferedReader.swift */; };
+		7FBCA552A6090C2DF269D9E9 /* NSURLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCA9CB6FB8AA516DB9C538 /* NSURLExtension.swift */; };
 		7FBCA65DDE8C32438FE4E9C8 /* FileBufferedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCA03857771FD1265B089F /* FileBufferedReader.swift */; };
 		7FBCA6A7E5981681AB2E5E48 /* ReaderBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCAFFB2E9DF6E75D5AF46D /* ReaderBuilder.swift */; };
 		7FBCA81E63E9441F3AC22BB7 /* ReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCA10A0EB4EAA0CD4AB5EF /* ReaderTests.swift */; };
@@ -40,8 +41,10 @@
 		7FBCABE9DE7114831052FA9D /* BufferedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCAAE76466B9E53DA130F3 /* BufferedReader.swift */; };
 		7FBCAC77789A6B78BFB3B2BE /* ReaderBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCAFFB2E9DF6E75D5AF46D /* ReaderBuilder.swift */; };
 		7FBCACF2178BC111C07423B5 /* URLBufferedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCAAA79D01BF5CEBA7261A /* URLBufferedReader.swift */; };
+		7FBCAD486D18CBDBCA89C3F6 /* NSURLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCA9CB6FB8AA516DB9C538 /* NSURLExtension.swift */; };
 		7FBCAD932FF257481CDB95DE /* StringBufferedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCA22C61E0D299DF542F4B /* StringBufferedReader.swift */; };
 		7FBCADB79746F44D9AC5F47C /* URLBufferedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCAAA79D01BF5CEBA7261A /* URLBufferedReader.swift */; };
+		7FBCAE6AB452BA202FB48490 /* NSURLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCA9CB6FB8AA516DB9C538 /* NSURLExtension.swift */; };
 		7FBCAEE343068A84C3A08C26 /* StringBufferedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCA22C61E0D299DF542F4B /* StringBufferedReader.swift */; };
 		7FBCAF63D24C6183A51D09D8 /* URLBufferedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCAAA79D01BF5CEBA7261A /* URLBufferedReader.swift */; };
 		9E6CAA481C148EC1009D9093 /* Pantomime.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 9E6CAA471C148EC1009D9093 /* Pantomime.podspec */; };
@@ -77,6 +80,7 @@
 		7FBCA03857771FD1265B089F /* FileBufferedReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileBufferedReader.swift; path = sources/FileBufferedReader.swift; sourceTree = "<group>"; };
 		7FBCA10A0EB4EAA0CD4AB5EF /* ReaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReaderTests.swift; sourceTree = "<group>"; };
 		7FBCA22C61E0D299DF542F4B /* StringBufferedReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringBufferedReader.swift; path = sources/StringBufferedReader.swift; sourceTree = "<group>"; };
+		7FBCA9CB6FB8AA516DB9C538 /* NSURLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSURLExtension.swift; path = sources/NSURLExtension.swift; sourceTree = "<group>"; };
 		7FBCAAA79D01BF5CEBA7261A /* URLBufferedReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = URLBufferedReader.swift; path = sources/URLBufferedReader.swift; sourceTree = "<group>"; };
 		7FBCAAE76466B9E53DA130F3 /* BufferedReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BufferedReader.swift; path = sources/BufferedReader.swift; sourceTree = "<group>"; };
 		7FBCAFFB2E9DF6E75D5AF46D /* ReaderBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReaderBuilder.swift; path = sources/ReaderBuilder.swift; sourceTree = "<group>"; };
@@ -141,6 +145,7 @@
 				7FBCAFFB2E9DF6E75D5AF46D /* ReaderBuilder.swift */,
 				7FBCA22C61E0D299DF542F4B /* StringBufferedReader.swift */,
 				7FBCAAA79D01BF5CEBA7261A /* URLBufferedReader.swift */,
+				7FBCA9CB6FB8AA516DB9C538 /* NSURLExtension.swift */,
 			);
 			name = sources;
 			sourceTree = "<group>";
@@ -416,6 +421,7 @@
 				7FBCA6A7E5981681AB2E5E48 /* ReaderBuilder.swift in Sources */,
 				7FBCA08CA592BD0DC04B8FE5 /* StringBufferedReader.swift in Sources */,
 				7FBCAF63D24C6183A51D09D8 /* URLBufferedReader.swift in Sources */,
+				7FBCAE6AB452BA202FB48490 /* NSURLExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,6 +449,7 @@
 				7FBCAC77789A6B78BFB3B2BE /* ReaderBuilder.swift in Sources */,
 				7FBCAEE343068A84C3A08C26 /* StringBufferedReader.swift in Sources */,
 				7FBCADB79746F44D9AC5F47C /* URLBufferedReader.swift in Sources */,
+				7FBCAD486D18CBDBCA89C3F6 /* NSURLExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +468,7 @@
 				7FBCA092389AE5D6DF3A72EB /* ReaderBuilder.swift in Sources */,
 				7FBCAD932FF257481CDB95DE /* StringBufferedReader.swift in Sources */,
 				7FBCACF2178BC111C07423B5 /* URLBufferedReader.swift in Sources */,
+				7FBCA552A6090C2DF269D9E9 /* NSURLExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
