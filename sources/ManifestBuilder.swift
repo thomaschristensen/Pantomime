@@ -11,6 +11,8 @@ import Foundation
 */
 public class ManifestBuilder {
 
+    public init() {}
+
     /**
     * Parses Master playlist manifests
     */
