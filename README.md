@@ -59,41 +59,41 @@ The ManifestBuilder's parse method expects a master playlist manifest
  
 ## Core Classes
 
-# ManifestBuilder
+#### ManifestBuilder
 The manifest builder can parse both Master and Media playlist manifests.
 You can choose to let ManifestBuilder parse master and it's media
 playlists, or you can parse either the master or media playlists only.
   
-# MasterPlaylist
+#### MasterPlaylist
 Represents a master playlist and it holds a reference to a list of 
 media playlist objects
 
-# MediaPlaylist
+#### MediaPlaylist
 The media playlist object contains a list of all video segments and
 other properties like target duration (max duration of each segment),
 path, version, bandwidth, program-id and the starting media sequence 
 number.
 
-# MediaSegment
+#### MediaSegment
 This object holds a reference to the actual video file (path), it's
 actual duration, sequence number and optional title.
 
 ## Helper Classes
 
-# BufferedReader
+#### BufferedReader
 This is a protocol that defines how these text manifest documents can
 be read line by line. Various implementations of this protocol exist
 helping reading the documents from a File, a URL or from a String.
 These implementations are FileBufferedReader, URLBufferedReader and 
 StringBufferedReader. 
 
-# ReaderBuilder
+#### ReaderBuilder
 Is a utility class that can be used to construct the actual 
 implementation of BufferedReader by specifying which type is required.
 (This class is already deprecated. Use the implementations of 
 BufferedReader directly)
 
-# NSURLExtension
+#### NSURLExtension
 An extension to the NSURL class has been made to assist in constructing
 the right URL when given relative paths in the various manifest files.
 
