@@ -244,7 +244,8 @@ public class ManifestBuilder {
         for playlist in master.playlists {
             if let path = playlist.path {
                 if let mediaURL = url.URLByReplacingLastPathComponent(path) {
-                    let media = parseMediaPlaylistFromURL(mediaURL, mediaPlaylist: playlist, onMediaSegment: onMediaSegment)
+                    parseMediaPlaylistFromURL(mediaURL,
+                            mediaPlaylist: playlist, onMediaSegment: onMediaSegment)
                 }
 
             }

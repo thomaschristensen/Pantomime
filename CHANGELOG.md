@@ -4,11 +4,11 @@ All notable changes to this project will be documented in this file following th
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ----
-## 0.1.0 (2016-08-25)
+## 0.1.0 (2016-08-28)
 
 ##### Added
 
 - The first release of the HLS Manifest parser
 - Reads and parses MediaPlaylist and MediaSegments
-
+- Can read full manifest with loading of referrenced manifests
 <br/>

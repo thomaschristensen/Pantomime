@@ -18,7 +18,7 @@ class PantomimeTests: XCTestCase {
         let manifestBuilder = ManifestBuilder()
         let mediaPlaylist = manifestBuilder.parseMediaPlaylistFromFile(path, onMediaSegment: {
             (segment: MediaSegment) -> Void in
-            print("Segment found \(segment.sequence)")
+            XCTAssertNotNil(segment.sequence)
         })
 
         XCTAssert(mediaPlaylist.targetDuration == 10)
@@ -36,7 +36,7 @@ class PantomimeTests: XCTestCase {
         if let path2 = bundle.pathForResource("media2", ofType: "m3u8") {
             let mediaPlaylist2 = manifestBuilder.parseMediaPlaylistFromFile(path2, onMediaSegment: {
                 (segment: MediaSegment) -> Void in
-                print("Segment found \(segment.sequence)")
+                XCTAssertNotNil(segment.sequence)
             })
             XCTAssertEqual(12, mediaPlaylist2.targetDuration, "Should have been read as 12 seconds")
         }
@@ -51,7 +51,9 @@ class PantomimeTests: XCTestCase {
         let masterPlaylist = manifestBuilder.parseMasterPlaylistFromFile(path,
                 onMediaPlaylist: {
                     (playlist: MediaPlaylist) -> Void in
-                    print("Playlist found with program id = \(playlist.programId) and bandwidth = \(playlist.bandwidth) using path \(playlist.path)")
+                    XCTAssertNotNil(playlist.programId)
+                    XCTAssertNotNil(playlist.bandwidth)
+                    XCTAssertNotNil(playlist.path)
                 })
 
         XCTAssert(masterPlaylist.playlists.count == 4)
@@ -151,7 +153,7 @@ class PantomimeTests: XCTestCase {
         waitForExpectationsWithTimeout(task.originalRequest!.timeoutInterval) {
             error in
             if let error = error {
-                print("Error: \(error.localizedDescription)")
+                XCTFail("Error: \(error.localizedDescription)")
             }
             task.cancel()
         }
@@ -174,18 +176,25 @@ class PantomimeTests: XCTestCase {
         }
     }
 
+    func testSimpleFullParse() {
+        let builder = ManifestBuilder()
+        if let url = NSURL(string: "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8") {
+            let manifest = builder.parse(url)
+            XCTAssertEqual(4, manifest.playlists.count)
+        }
+    }
+
     func testFullParse() {
         let builder = ManifestBuilder()
         if let url = NSURL(string: "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8") {
-            print("Parsing master playlist at \(url)")
             let manifest = builder.parse(url, onMediaPlaylist: {
                 (media: MediaPlaylist) -> Void in
-                print(" - Parsing media playlist at \(media.path!)")
+                XCTAssertNotNil(media.path)
             }, onMediaSegment: {
                 (segment: MediaSegment) -> Void in
                 let mediaManifestURL = url.URLByReplacingLastPathComponent(segment.mediaPlaylist!.path!)
                 let segmentURL = mediaManifestURL!.URLByReplacingLastPathComponent(segment.path!)
-                print("    - Segment at \(segmentURL!.absoluteString)")
+                XCTAssertNotNil(segmentURL!.absoluteString)
             })
             XCTAssertEqual(4, manifest.playlists.count, "Number of media playlists in master does not match")
             XCTAssertEqual(181, manifest.playlists[3].segments.count, "Segments not correctly parsed")
