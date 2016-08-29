@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file following th
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ----
+## 0.1.2 (2016-08-29)
+
+##### Fixed
+
+- public constructors, properties and methods added
+<br/>
+
+## 0.1.1 (2016-08-28)
+
+##### Updated
+
+- Docs (readme)
+
+##### Fixed
+
+- public constructor was missing in ManifestBuilder
+<br/>
+
 ## 0.1.0 (2016-08-28)
 
 ##### Added

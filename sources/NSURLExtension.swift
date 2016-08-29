@@ -7,7 +7,7 @@ import Foundation
 
 // Extend the NSURL object with helpers
 
-extension NSURL {
+public extension NSURL {
     /**
         Replaces the last path component of the URL with the path component and returns a new URL or nil.
 

@@ -9,19 +9,19 @@ import Foundation
 * Uses a string as a stream and reads it line by line.
 */
 
-class StringBufferedReader: BufferedReader {
+public class StringBufferedReader: BufferedReader {
     var _buffer: [String]
     var _line: Int
 
-    init(string: String) {
+    public init(string: String) {
         _line = 0
         _buffer = string.componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet())
     }
 
-    func close() {
+    public func close() {
     }
 
-    func readLine() -> String? {
+    public func readLine() -> String? {
         if _buffer.isEmpty || _buffer.count <= _line {
             return nil
         }

@@ -5,20 +5,20 @@
 
 import Foundation
 
-class FileBufferedReader: BufferedReader {
+public class FileBufferedReader: BufferedReader {
     var _fileName: String
     var streamReader: StreamReader
 
-    init(path: String) {
+    public init(path: String) {
         _fileName = path
         streamReader = StreamReader(path: _fileName)!
     }
 
-    func close() {
+    public func close() {
         streamReader.close()
     }
 
-    func readLine() -> String? {
+    public func readLine() -> String? {
         return streamReader.nextLine()
     }
 }

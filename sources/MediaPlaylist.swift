@@ -7,16 +7,32 @@ import Foundation
 
 public class MediaPlaylist {
     var masterPlaylist: MasterPlaylist?
-    var programId: Int = 0
-    var bandwidth: Int = 0
-    var path: String?
-    var version: Int?
-    var targetDuration: Int?
-    var mediaSequence: Int?
+
+    public var programId: Int = 0
+    public var bandwidth: Int = 0
+    public var path: String?
+    public var version: Int?
+    public var targetDuration: Int?
+    public var mediaSequence: Int?
     var segments = [MediaSegment]()
+
+    public init() {
+
+    }
 
     public func addSegment(segment: MediaSegment) {
         segments.append(segment)
+    }
+
+    public func getSegment(index: Int) -> MediaSegment? {
+        if index > segments.count {
+            return nil
+        }
+        return segments[index]
+    }
+
+    public func getSegmentCount() -> Int {
+        return segments.count
     }
 
     public func duration() -> Float {
@@ -25,5 +41,9 @@ public class MediaPlaylist {
             dur = dur + item.duration!
         }
         return dur
+    }
+
+    public func getMaster() -> MasterPlaylist? {
+        return self.masterPlaylist
     }
 }

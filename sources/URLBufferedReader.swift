@@ -9,11 +9,11 @@ import Foundation
 * Reads the document found at the specified URL in one chunk synchonous
 * and then lets the readLine function pick it line by line.
 */
-class URLBufferedReader: BufferedReader {
+public class URLBufferedReader: BufferedReader {
     var _uri: NSURL
     var _stringReader: StringBufferedReader
 
-    init(uri: NSURL) {
+    public init(uri: NSURL) {
         _uri = uri
         _stringReader = StringBufferedReader(string: "")
         let request1: NSURLRequest = NSURLRequest(URL: _uri)
@@ -27,11 +27,11 @@ class URLBufferedReader: BufferedReader {
         }
     }
 
-    func close() {
+    public func close() {
         _stringReader.close()
     }
 
-    func readLine() -> String? {
+    public func readLine() -> String? {
         return _stringReader.readLine()
     }
 

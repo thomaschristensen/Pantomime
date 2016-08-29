@@ -5,7 +5,7 @@
 
 import Foundation
 
-class ReaderBuilder {
+public class ReaderBuilder {
 
     enum ReaderBuilderError: ErrorType {
         case IllegalReference(reference:String)
