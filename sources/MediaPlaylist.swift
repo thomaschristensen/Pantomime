@@ -25,7 +25,7 @@ public class MediaPlaylist {
     }
 
     public func getSegment(index: Int) -> MediaSegment? {
-        if index > segments.count {
+        if index >= segments.count {
             return nil
         }
         return segments[index]

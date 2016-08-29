@@ -19,7 +19,7 @@ public class MasterPlaylist {
     }
 
     public func getPlaylist(index: Int) -> MediaPlaylist? {
-        if index > playlists.count {
+        if index >= playlists.count {
             return nil
         }
         return playlists[index]

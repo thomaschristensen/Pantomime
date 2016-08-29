@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file following th
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ----
+## 0.1.3 (2016-08-29)
+
+##### Fixed
+
+- "fatal error: Index out of range" on getSegment and getPlaylist.
+
+<br/>
 ## 0.1.2 (2016-08-29)
 
 ##### Fixed

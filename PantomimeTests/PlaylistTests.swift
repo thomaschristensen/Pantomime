@@ -10,6 +10,7 @@ class PlaylistTests: XCTestCase {
 
     func testMasterPlaylist() {
         let master = MasterPlaylist()
+        XCTAssertNil(master.getPlaylist(0))
         XCTAssertNil(master.getPlaylist(5))
         let media = MediaPlaylist()
         master.addPlaylist(media)
@@ -23,6 +24,8 @@ class PlaylistTests: XCTestCase {
     func testMediaPlaylist() {
         let media = MediaPlaylist()
         let segment = MediaSegment()
+        XCTAssertNil(media.getSegment(0))
+        XCTAssertNil(media.getSegment(2))
         media.addSegment(segment)
         XCTAssertEqual(1, media.getSegmentCount())
         XCTAssertNotNil(media.getSegment(0))
