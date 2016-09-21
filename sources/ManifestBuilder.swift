@@ -117,7 +117,7 @@ private extension ManifestBuilder {
             reader.close()
         }
         while let line = reader.readLine() {
-            masterPlaylist.m3u8String.appendNewLine(line)
+            masterPlaylist.m3u8String.appendContentsOf(line + "\n")
 
             if line.isEmpty {
                 // Skip empty lines
@@ -186,7 +186,7 @@ private extension ManifestBuilder {
         }
 
         while let line = reader.readLine() {
-            mediaPlaylist.m3u8String.appendNewLine(line)
+            mediaPlaylist.m3u8String.appendContentsOf(line + "\n")
 
             if line.isEmpty {
                 // Skip empty lines
