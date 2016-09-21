@@ -5,7 +5,7 @@
 
 import Foundation
 
-public class MediaPlaylist {
+public class MediaPlaylist: Playlist {
 
     weak var masterPlaylist: MasterPlaylist?
 
@@ -15,6 +15,12 @@ public class MediaPlaylist {
     public internal(set) var version: Int?
     public internal(set) var targetDuration: Int?
     public internal(set) var mediaSequence: Int?
+
+    // Raw data
+    public internal(set) var m3u8String: String = ""
+    public var m3u8Data: NSData? {
+        return m3u8String.dataUsingEncoding(NSUTF8StringEncoding)
+    }
 
     // Advanced attributes
     public internal(set) var type: String?

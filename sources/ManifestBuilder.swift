@@ -113,6 +113,8 @@ private extension ManifestBuilder {
             reader.close()
         }
         while let line = reader.readLine() {
+            masterPlaylist.m3u8String.appendNewLine(line)
+
             if line.isEmpty {
                 // Skip empty lines
 
@@ -135,7 +137,8 @@ private extension ManifestBuilder {
                     currentMediaPlaylist = mediaPlaylist
                 } else if line.hasPrefix("#EXT-X-MEDIA") {
                     let mediaPlaylist = MediaPlaylist()
-                    // #EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID="subs",NAME="English",DEFAULT=NO,AUTOSELECT=YES,FORCED=NO,LANGUAGE="eng",URI="..."
+                    // #EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID="subs",NAME="English",\
+                    // DEFAULT=NO,AUTOSELECT=YES,FORCED=NO,LANGUAGE="eng",URI="..."
                     mediaPlaylist.language = try? line.replace("(.*)LANGUAGE=\"(.*?)\"(.*)", replacement: "$2")
                     mediaPlaylist.type = try? line.replace("(.*)TYPE=(.*?),(.*)", replacement: "$2")
                     mediaPlaylist.path = try? line.replace("(.*)URI=\"(.*?)\"(.*)", replacement: "$2")
@@ -179,6 +182,8 @@ private extension ManifestBuilder {
         }
 
         while let line = reader.readLine() {
+            mediaPlaylist.m3u8String.appendNewLine(line)
+
             if line.isEmpty {
                 // Skip empty lines
 

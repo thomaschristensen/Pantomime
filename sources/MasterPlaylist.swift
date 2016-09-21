@@ -8,10 +8,16 @@
 
 import Foundation
 
-public class MasterPlaylist {
+public class MasterPlaylist: Playlist {
     var playlists = [MediaPlaylist]()
 
     public internal(set) var path: String?
+
+    // Raw data
+    public internal(set) var m3u8String: String = ""
+    public var m3u8Data: NSData? {
+        return m3u8String.dataUsingEncoding(NSUTF8StringEncoding)
+    }
 
     func addPlaylist(playlist: MediaPlaylist) {
         playlist.masterPlaylist = self

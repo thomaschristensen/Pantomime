@@ -20,4 +20,8 @@ extension String {
             withTemplate: replacement
         )
     }
+
+    mutating func appendNewLine(line: String) {
+        self.appendContentsOf("\n" + line)
+    }
 }
