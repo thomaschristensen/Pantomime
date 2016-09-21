@@ -21,6 +21,7 @@ public extension ManifestBuilder {
      *
      * Convenience method that uses a StringBufferedReader as source for the manifest.
      */
+    @warn_unused_result
     func parseMasterPlaylistFromString(string: String, onMediaPlaylist:
         ((playlist: MediaPlaylist) -> Void)? = nil) -> MasterPlaylist {
         return parseMasterPlaylist(StringBufferedReader(string: string), onMediaPlaylist: onMediaPlaylist)
@@ -31,6 +32,7 @@ public extension ManifestBuilder {
      *
      * Convenience method that uses a FileBufferedReader as source for the manifest.
      */
+    @warn_unused_result
     func parseMasterPlaylistFromFile(path: String, onMediaPlaylist:
         ((playlist: MediaPlaylist) -> Void)? = nil) -> MasterPlaylist {
         return parseMasterPlaylist(FileBufferedReader(path: path), onMediaPlaylist: onMediaPlaylist)
@@ -41,6 +43,7 @@ public extension ManifestBuilder {
      *
      * Convenience method that uses a URLBufferedReader as source for the manifest.
      */
+    @warn_unused_result
     func parseMasterPlaylistFromURL(url: NSURL, onMediaPlaylist:
         ((playlist: MediaPlaylist) -> Void)? = nil) -> MasterPlaylist {
         return parseMasterPlaylist(URLBufferedReader(uri: url), onMediaPlaylist: onMediaPlaylist)
@@ -82,6 +85,7 @@ public extension ManifestBuilder {
     /**
      * Parses the master manifest found at the URL and all the referenced media playlist manifests recursively.
      */
+    @warn_unused_result
     func parse(url: NSURL, onMediaPlaylist:
         ((playlist: MediaPlaylist) -> Void)? = nil, onMediaSegment:
         ((segment: MediaSegment) -> Void)? = nil) -> MasterPlaylist {
