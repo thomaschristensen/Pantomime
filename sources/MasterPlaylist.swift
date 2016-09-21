@@ -10,22 +10,31 @@ import Foundation
 
 public class MasterPlaylist {
     var playlists = [MediaPlaylist]()
-    public var path: String?
 
-    public init() {}
+    public internal(set) var path: String?
 
-    public func addPlaylist(playlist: MediaPlaylist) {
+    func addPlaylist(playlist: MediaPlaylist) {
+        playlist.masterPlaylist = self
         playlists.append(playlist)
     }
+}
 
-    public func getPlaylist(index: Int) -> MediaPlaylist? {
+public extension MasterPlaylist {
+
+    subscript(idx: Int) -> MediaPlaylist? {
+        get {
+            return getPlaylist(idx)
+        }
+    }
+
+    func getPlaylist(index: Int) -> MediaPlaylist? {
         if index >= playlists.count {
             return nil
         }
         return playlists[index]
     }
 
-    public func getPlaylistCount() -> Int {
+    func getPlaylistCount() -> Int {
         return playlists.count
     }
 }

@@ -6,20 +6,18 @@
 import Foundation
 
 public class MediaSegment {
-    var mediaPlaylist: MediaPlaylist?
-    public var duration: Float?
-    public var sequence: Int = 0
-    public var subrangeLength: Int?
-    public var subrangeStart: Int?
-    public var title: String?
-    public var discontinuity: Bool = false
-    public var path: String?
 
-    public init() {
+    weak var mediaPlaylist: MediaPlaylist?
 
-    }
+    public internal(set) var duration: Float?
+    public internal(set) var sequence: Int = 0
+    public internal(set) var subrangeLength: Int?
+    public internal(set) var subrangeStart: Int?
+    public internal(set) var title: String?
+    public internal(set) var discontinuity: Bool = false
+    public internal(set) var path: String?
 
     public func getMediaPlaylist() -> MediaPlaylist? {
-        return self.mediaPlaylist
+        return mediaPlaylist
     }
 }

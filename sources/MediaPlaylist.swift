@@ -6,36 +6,47 @@
 import Foundation
 
 public class MediaPlaylist {
-    var masterPlaylist: MasterPlaylist?
 
-    public var programId: Int = 0
-    public var bandwidth: Int = 0
-    public var path: String?
-    public var version: Int?
-    public var targetDuration: Int?
-    public var mediaSequence: Int?
+    weak var masterPlaylist: MasterPlaylist?
+
+    public internal(set) var programId: Int = 0
+    public internal(set) var bandwidth: Int = 0
+    public internal(set) var path: String?
+    public internal(set) var version: Int?
+    public internal(set) var targetDuration: Int?
+    public internal(set) var mediaSequence: Int?
+
+    // Advanced attributes
+    public internal(set) var type: String?
+    public internal(set) var language: String?
+
     var segments = [MediaSegment]()
 
-    public init() {
-
-    }
-
-    public func addSegment(segment: MediaSegment) {
+    func addSegment(segment: MediaSegment) {
         segments.append(segment)
     }
+}
 
-    public func getSegment(index: Int) -> MediaSegment? {
+public extension MediaPlaylist {
+
+    subscript(idx: Int) -> MediaSegment? {
+        get {
+            return getSegment(idx)
+        }
+    }
+
+    func getSegment(index: Int) -> MediaSegment? {
         if index >= segments.count {
             return nil
         }
         return segments[index]
     }
 
-    public func getSegmentCount() -> Int {
+    func getSegmentCount() -> Int {
         return segments.count
     }
 
-    public func duration() -> Float {
+    func duration() -> Float {
         var dur: Float = 0.0
         for item in segments {
             dur = dur + item.duration!
@@ -43,7 +54,7 @@ public class MediaPlaylist {
         return dur
     }
 
-    public func getMaster() -> MasterPlaylist? {
-        return self.masterPlaylist
+    func getMaster() -> MasterPlaylist? {
+        return masterPlaylist
     }
 }

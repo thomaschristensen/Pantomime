@@ -139,9 +139,9 @@
 				5ED032791D6F1710006DE1F3 /* ManifestBuilder.swift */,
 				5ED0327A1D6F1710006DE1F3 /* MediaSegment.swift */,
 				5ED0327B1D6F1710006DE1F3 /* MediaPlaylist.swift */,
+				5ED032911D6F7539006DE1F3 /* MasterPlaylist.swift */,
 				5ED0327C1D6F1710006DE1F3 /* StringExtensions.swift */,
 				5ED0327D1D6F1710006DE1F3 /* StreamReader.swift */,
-				5ED032911D6F7539006DE1F3 /* MasterPlaylist.swift */,
 				7FBCAAE76466B9E53DA130F3 /* BufferedReader.swift */,
 				7FBCA03857771FD1265B089F /* FileBufferedReader.swift */,
 				7FBCAFFB2E9DF6E75D5AF46D /* ReaderBuilder.swift */,
@@ -391,7 +391,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint autocorrect\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		9EB9C85B1C92C271005C0541 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
