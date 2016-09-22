@@ -245,7 +245,7 @@ public class ManifestBuilder {
         let master = parseMasterPlaylistFromURL(url, onMediaPlaylist: onMediaPlaylist)
         for playlist in master.playlists {
             if let path = playlist.path {
-                if let mediaURL = url.URLByReplacingLastPathComponent(path) {
+                if let mediaURL = NSURL(string: path) ?? url.URLByReplacingLastPathComponent(path) {
                     parseMediaPlaylistFromURL(mediaURL,
                             mediaPlaylist: playlist, onMediaSegment: onMediaSegment)
                 }
