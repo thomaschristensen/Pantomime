@@ -7,21 +7,21 @@ import Foundation
 
 class StreamReader {
 
-    let encoding: UInt
+    let encoding: String.Encoding
     let chunkSize: Int
 
-    var fileHandle: NSFileHandle!
+    var fileHandle: FileHandle!
     let buffer: NSMutableData!
-    let delimData: NSData!
+    let delimData: Data!
     var atEof: Bool = false
-
-    init?(path: String, delimiter: String = "\n", encoding: UInt = NSUTF8StringEncoding, chunkSize: Int = 4096) {
+    
+    init?(path: String, delimiter: String = "\n", encoding: String.Encoding = String.Encoding.utf8, chunkSize: Int = 4096) {
         self.chunkSize = chunkSize
         self.encoding = encoding
 
-        if let fileHandle = NSFileHandle(forReadingAtPath: path),
-        delimData = delimiter.dataUsingEncoding(encoding),
-        buffer = NSMutableData(capacity: chunkSize) {
+        if let fileHandle = FileHandle(forReadingAtPath: path),
+        let delimData = delimiter.data(using: encoding),
+        let buffer = NSMutableData(capacity: chunkSize) {
             self.fileHandle = fileHandle
             self.delimData = delimData
             self.buffer = buffer
@@ -47,15 +47,15 @@ class StreamReader {
 
         // Read data chunks from file until a line delimiter is found:
 
-        var range = buffer.rangeOfData(delimData, options: [], range: NSRange(location: 0, length: buffer.length))
+        var range = buffer.range(of: delimData, options: [], in: NSRange(location: 0, length: buffer.length))
         while range.location == NSNotFound {
-            let tmpData = fileHandle.readDataOfLength(chunkSize)
-            if tmpData.length == 0 {
+            let tmpData = fileHandle.readData(ofLength: chunkSize)
+            if tmpData.count == 0 {
                 // EOF or read error.
                 atEof = true
                 if buffer.length > 0 {
                     // Buffer contains last line in file (not terminated by delimiter).
-                    let line = NSString(data: buffer, encoding: encoding)
+                    let line = NSString(data: buffer as Data, encoding: encoding.rawValue)
 
                     buffer.length = 0
                     return line as String?
@@ -63,15 +63,15 @@ class StreamReader {
                 // No more lines.
                 return nil
             }
-            buffer.appendData(tmpData)
-            range = buffer.rangeOfData(delimData, options: [], range: NSRange(location: 0, length: buffer.length))
+            buffer.append(tmpData)
+            range = buffer.range(of: delimData, options: [], in: NSRange(location: 0, length: buffer.length))
         }
 
         // Convert complete line (excluding the delimiter) to a string:
-        let line = NSString(data: buffer.subdataWithRange(NSRange(location: 0, length: range.location)),
-                encoding: encoding)
+        let line = NSString(data: buffer.subdata(with: NSRange(location: 0, length: range.location)),
+                encoding: encoding.rawValue)
         // Remove line (and the delimiter) from the buffer:
-        buffer.replaceBytesInRange( NSRange(location: 0, length: range.location + range.length),
+        buffer.replaceBytes( in: NSRange(location: 0, length: range.location + range.length),
                                     withBytes: nil, length: 0)
 
         return line as String?
@@ -79,7 +79,7 @@ class StreamReader {
 
     /// Start reading from the beginning of file.
     func rewind() -> Void {
-        fileHandle.seekToFileOffset(0)
+        fileHandle.seek(toFileOffset: 0)
         buffer.length = 0
         atEof = false
     }

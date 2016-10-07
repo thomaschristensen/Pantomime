@@ -11,5 +11,5 @@ import Foundation
 public protocol Playlist {
 
     var m3u8String: String { get }
-    var m3u8Data: NSData? { get }
+    var m3u8Data: Data? { get }
 }

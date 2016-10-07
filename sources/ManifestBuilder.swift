@@ -9,7 +9,7 @@ import Foundation
 * Parses HTTP Live Streaming manifest files
 * Use a BufferedReader to let the parser read from various sources.
 */
-public class ManifestBuilder {
+open class ManifestBuilder {
 
     public init() {}
 
@@ -21,9 +21,9 @@ public extension ManifestBuilder {
      *
      * Convenience method that uses a StringBufferedReader as source for the manifest.
      */
-    @warn_unused_result
-    func parseMasterPlaylistFromString(string: String, onMediaPlaylist:
-        ((playlist: MediaPlaylist) -> Void)? = nil) -> MasterPlaylist {
+    
+    func parseMasterPlaylistFromString(_ string: String, onMediaPlaylist:
+        ((_ playlist: MediaPlaylist) -> Void)? = nil) -> MasterPlaylist {
         return parseMasterPlaylist(StringBufferedReader(string: string), onMediaPlaylist: onMediaPlaylist)
     }
 
@@ -32,9 +32,9 @@ public extension ManifestBuilder {
      *
      * Convenience method that uses a FileBufferedReader as source for the manifest.
      */
-    @warn_unused_result
-    func parseMasterPlaylistFromFile(path: String, onMediaPlaylist:
-        ((playlist: MediaPlaylist) -> Void)? = nil) -> MasterPlaylist {
+    
+    func parseMasterPlaylistFromFile(_ path: String, onMediaPlaylist:
+        ((_ playlist: MediaPlaylist) -> Void)? = nil) -> MasterPlaylist {
         return parseMasterPlaylist(FileBufferedReader(path: path), onMediaPlaylist: onMediaPlaylist)
     }
 
@@ -43,9 +43,9 @@ public extension ManifestBuilder {
      *
      * Convenience method that uses a URLBufferedReader as source for the manifest.
      */
-    @warn_unused_result
-    func parseMasterPlaylistFromURL(url: NSURL, onMediaPlaylist:
-        ((playlist: MediaPlaylist) -> Void)? = nil) -> MasterPlaylist {
+    
+    func parseMasterPlaylistFromURL(_ url: URL, onMediaPlaylist:
+        ((_ playlist: MediaPlaylist) -> Void)? = nil) -> MasterPlaylist {
         return parseMasterPlaylist(URLBufferedReader(uri: url), onMediaPlaylist: onMediaPlaylist)
     }
 
@@ -54,8 +54,8 @@ public extension ManifestBuilder {
      *
      * Convenience method that uses a StringBufferedReader as source for the manifest.
      */
-    func parseMediaPlaylistFromString(string: String, mediaPlaylist: MediaPlaylist = MediaPlaylist(),
-                                      onMediaSegment:((segment: MediaSegment) -> Void)? = nil) -> MediaPlaylist {
+    func parseMediaPlaylistFromString(_ string: String, mediaPlaylist: MediaPlaylist = MediaPlaylist(),
+                                      onMediaSegment:((_ segment: MediaSegment) -> Void)? = nil) -> MediaPlaylist {
         return parseMediaPlaylist(StringBufferedReader(string: string),
                                   mediaPlaylist: mediaPlaylist, onMediaSegment: onMediaSegment)
     }
@@ -65,8 +65,8 @@ public extension ManifestBuilder {
      *
      * Convenience method that uses a FileBufferedReader as source for the manifest.
      */
-    func parseMediaPlaylistFromFile(path: String, mediaPlaylist: MediaPlaylist = MediaPlaylist(),
-                                    onMediaSegment: ((segment: MediaSegment) -> Void)? = nil) -> MediaPlaylist {
+    func parseMediaPlaylistFromFile(_ path: String, mediaPlaylist: MediaPlaylist = MediaPlaylist(),
+                                    onMediaSegment: ((_ segment: MediaSegment) -> Void)? = nil) -> MediaPlaylist {
         return parseMediaPlaylist(FileBufferedReader(path: path),
                                   mediaPlaylist: mediaPlaylist, onMediaSegment: onMediaSegment)
     }
@@ -76,8 +76,8 @@ public extension ManifestBuilder {
      *
      * Convenience method that uses a URLBufferedReader as source for the manifest.
      */
-    func parseMediaPlaylistFromURL(url: NSURL, mediaPlaylist: MediaPlaylist = MediaPlaylist(),
-                                   onMediaSegment: ((segment: MediaSegment) -> Void)? = nil) -> MediaPlaylist {
+    func parseMediaPlaylistFromURL(_ url: URL, mediaPlaylist: MediaPlaylist = MediaPlaylist(),
+                                   onMediaSegment: ((_ segment: MediaSegment) -> Void)? = nil) -> MediaPlaylist {
         return parseMediaPlaylist(URLBufferedReader(uri: url),
                                   mediaPlaylist: mediaPlaylist, onMediaSegment: onMediaSegment)
     }
@@ -85,19 +85,21 @@ public extension ManifestBuilder {
     /**
      * Parses the master manifest found at the URL and all the referenced media playlist manifests recursively.
      */
-    @warn_unused_result
-    func parse(url: NSURL, onMediaPlaylist:
-        ((playlist: MediaPlaylist) -> Void)? = nil, onMediaSegment:
-        ((segment: MediaSegment) -> Void)? = nil) -> MasterPlaylist {
+    
+    func parse(_ url: URL, onMediaPlaylist:
+        ((_ playlist: MediaPlaylist) -> Void)? = nil, onMediaSegment:
+        ((_ segment: MediaSegment) -> Void)? = nil) -> MasterPlaylist {
         // Parse master
         let master = parseMasterPlaylistFromURL(url, onMediaPlaylist: onMediaPlaylist)
         for playlist in master.playlists {
             if let path = playlist.path {
-                if let mediaURL = NSURL(string: path) ?? url.URLByReplacingLastPathComponent(path) {
-                    parseMediaPlaylistFromURL(mediaURL,
-                                              mediaPlaylist: playlist, onMediaSegment: onMediaSegment)
+                let mediaURL: URL
+                if let absoluteURL = URL(string: path) {
+                    mediaURL = absoluteURL
+                } else {
+                    mediaURL = url.URLByReplacingLastPathComponent(path)
                 }
-
+                let _ = parseMediaPlaylistFromURL(mediaURL, mediaPlaylist: playlist, onMediaSegment: onMediaSegment)
             }
         }
         return master
@@ -108,8 +110,8 @@ private extension ManifestBuilder {
     /**
      * Parses Master playlist manifests
      */
-    func parseMasterPlaylist(reader: BufferedReader, onMediaPlaylist:
-        ((playlist: MediaPlaylist) -> Void)?) -> MasterPlaylist {
+    func parseMasterPlaylist(_ reader: BufferedReader, onMediaPlaylist:
+        ((_ playlist: MediaPlaylist) -> Void)?) -> MasterPlaylist {
         var masterPlaylist = MasterPlaylist()
         var currentMediaPlaylist: MediaPlaylist?
 
@@ -117,12 +119,12 @@ private extension ManifestBuilder {
             reader.close()
         }
         while let line = reader.readLine() {
-            masterPlaylist.m3u8String.appendContentsOf(line + "\n")
+            // Skip empty lines
+            guard !line.isEmpty else { continue }
 
-            if line.isEmpty {
-                // Skip empty lines
+            masterPlaylist.m3u8String.append(line + "\n")
 
-            } else if line.hasPrefix("#EXT") {
+            if line.hasPrefix("#EXT") {
 
                 // Tags
                 if line.hasPrefix("#EXTM3U") {
@@ -148,7 +150,7 @@ private extension ManifestBuilder {
                     mediaPlaylist.path = try? line.replace("(.*)URI=\"(.*?)\"(.*)", replacement: "$2")
 
                     masterPlaylist.addPlaylist(mediaPlaylist)
-                    onMediaPlaylist?(playlist: mediaPlaylist)
+                    onMediaPlaylist?(mediaPlaylist)
                 }
             } else if line.hasPrefix("#") {
                 // Comments are ignored
@@ -161,7 +163,7 @@ private extension ManifestBuilder {
                     masterPlaylist.addPlaylist(playlist)
 
                     // Call handler
-                    onMediaPlaylist?(playlist: playlist)
+                    onMediaPlaylist?(playlist)
 
                     // Nil out in case there are more to find
                     currentMediaPlaylist = nil
@@ -175,8 +177,8 @@ private extension ManifestBuilder {
     /**
      * Parses Media Playlist manifests
      */
-    func parseMediaPlaylist(reader: BufferedReader, mediaPlaylist: MediaPlaylist = MediaPlaylist(),
-                                    onMediaSegment: ((segment: MediaSegment) -> Void)?) -> MediaPlaylist {
+    func parseMediaPlaylist(_ reader: BufferedReader, mediaPlaylist: MediaPlaylist = MediaPlaylist(),
+                                    onMediaSegment: ((_ segment: MediaSegment) -> Void)?) -> MediaPlaylist {
         var currentSegment: MediaSegment?
         var currentURI: String?
         var currentSequence = 0
@@ -186,12 +188,12 @@ private extension ManifestBuilder {
         }
 
         while let line = reader.readLine() {
-            mediaPlaylist.m3u8String.appendContentsOf(line + "\n")
+            // Skip empty lines
+            guard !line.isEmpty else { continue }
 
-            if line.isEmpty {
-                // Skip empty lines
+            mediaPlaylist.m3u8String.append(line + "\n")
 
-            } else if line.hasPrefix("#EXT") {
+            if line.hasPrefix("#EXT") {
 
                 // Tags
                 if line.hasPrefix("#EXTM3U") {
@@ -235,7 +237,7 @@ private extension ManifestBuilder {
                         print("Failed to parse the segment duration and title. Line = \(line)")
                     }
                 } else if line.hasPrefix("#EXT-X-BYTERANGE") {
-                    if line.containsString("@") {
+                    if line.contains("@") {
                         do {
                             let subrangeLength = try line.replace("(.*):(\\d.*)@(.*)", replacement: "$2")
                             let subrangeStart = try line.replace("(.*):(\\d.*)@(.*)", replacement: "$3")
@@ -269,7 +271,7 @@ private extension ManifestBuilder {
                     currentSequence += 1
                     mediaPlaylist.addSegment(currentSegmentExists)
                     if let callableOnMediaSegment = onMediaSegment {
-                        callableOnMediaSegment(segment: currentSegmentExists)
+                        callableOnMediaSegment(currentSegmentExists)
                     }
                 }
             }

@@ -9,29 +9,29 @@ import Foundation
 * Reads the document found at the specified URL in one chunk synchonous
 * and then lets the readLine function pick it line by line.
 */
-public class URLBufferedReader: BufferedReader {
-    var _uri: NSURL
+open class URLBufferedReader: BufferedReader {
+    var _uri: URL
     var _stringReader: StringBufferedReader
 
-    public init(uri: NSURL) {
+    public init(uri: URL) {
         _uri = uri
         _stringReader = StringBufferedReader(string: "")
-        let request1: NSURLRequest = NSURLRequest(URL: _uri)
-        let response: AutoreleasingUnsafeMutablePointer<NSURLResponse?> = nil
+        let request1: URLRequest = URLRequest(url: _uri)
+        let response: AutoreleasingUnsafeMutablePointer<URLResponse?>? = nil
         do {
-            let dataVal = try NSURLConnection.sendSynchronousRequest(request1, returningResponse: response)
-            let text = String(data: dataVal, encoding: NSUTF8StringEncoding)!
+            let dataVal = try NSURLConnection.sendSynchronousRequest(request1, returning: response)
+            let text = String(data: dataVal, encoding: String.Encoding.utf8)!
             _stringReader = StringBufferedReader(string: text)
         } catch {
             print("Failed to make request for content at \(_uri)")
         }
     }
 
-    public func close() {
+    open func close() {
         _stringReader.close()
     }
 
-    public func readLine() -> String? {
+    open func readLine() -> String? {
         return _stringReader.readLine()
     }
 

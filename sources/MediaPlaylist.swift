@@ -5,30 +5,30 @@
 
 import Foundation
 
-public class MediaPlaylist: Playlist {
+open class MediaPlaylist: Playlist {
 
     weak var masterPlaylist: MasterPlaylist?
 
-    public internal(set) var programId: Int = 0
-    public internal(set) var bandwidth: Int = 0
-    public internal(set) var path: String?
-    public internal(set) var version: Int?
-    public internal(set) var targetDuration: Int?
-    public internal(set) var mediaSequence: Int?
+    open internal(set) var programId: Int = 0
+    open internal(set) var bandwidth: Int = 0
+    open internal(set) var path: String?
+    open internal(set) var version: Int?
+    open internal(set) var targetDuration: Int?
+    open internal(set) var mediaSequence: Int?
 
     // Raw data
-    public internal(set) var m3u8String: String = ""
-    public var m3u8Data: NSData? {
-        return m3u8String.dataUsingEncoding(NSUTF8StringEncoding)
+    open internal(set) var m3u8String: String = ""
+    open var m3u8Data: Data? {
+        return m3u8String.data(using: String.Encoding.utf8)
     }
 
     // Advanced attributes
-    public internal(set) var type: String?
-    public internal(set) var language: String?
+    open internal(set) var type: String?
+    open internal(set) var language: String?
 
     var segments = [MediaSegment]()
 
-    func addSegment(segment: MediaSegment) {
+    func addSegment(_ segment: MediaSegment) {
         segments.append(segment)
     }
 }
@@ -41,7 +41,7 @@ public extension MediaPlaylist {
         }
     }
 
-    func getSegment(index: Int) -> MediaSegment? {
+    func getSegment(_ index: Int) -> MediaSegment? {
         if index >= segments.count {
             return nil
         }
