@@ -21,10 +21,9 @@ public extension ManifestBuilder {
      *
      * Convenience method that uses a StringBufferedReader as source for the manifest.
      */
-    
-    func parseMasterPlaylistFromString(_ string: String, onMediaPlaylist:
-        ((_ playlist: MediaPlaylist) -> Void)? = nil) -> MasterPlaylist {
-        return parseMasterPlaylist(StringBufferedReader(string: string), onMediaPlaylist: onMediaPlaylist)
+    func parseMasterPlaylist(string: String, onMediaPlaylist:
+        ((_: MediaPlaylist) -> Void)? = nil) -> MasterPlaylist {
+        return parseMasterPlaylist(reader: StringBufferedReader(string: string), onMediaPlaylist: onMediaPlaylist)
     }
 
     /**
@@ -32,10 +31,9 @@ public extension ManifestBuilder {
      *
      * Convenience method that uses a FileBufferedReader as source for the manifest.
      */
-    
-    func parseMasterPlaylistFromFile(_ path: String, onMediaPlaylist:
-        ((_ playlist: MediaPlaylist) -> Void)? = nil) -> MasterPlaylist {
-        return parseMasterPlaylist(FileBufferedReader(path: path), onMediaPlaylist: onMediaPlaylist)
+    func parseMasterPlaylist(filePath path: String, onMediaPlaylist:
+        ((_ : MediaPlaylist) -> Void)? = nil) -> MasterPlaylist {
+        return parseMasterPlaylist(reader: FileBufferedReader(path: path), onMediaPlaylist: onMediaPlaylist)
     }
 
     /**
@@ -43,10 +41,9 @@ public extension ManifestBuilder {
      *
      * Convenience method that uses a URLBufferedReader as source for the manifest.
      */
-    
-    func parseMasterPlaylistFromURL(_ url: URL, onMediaPlaylist:
-        ((_ playlist: MediaPlaylist) -> Void)? = nil) -> MasterPlaylist {
-        return parseMasterPlaylist(URLBufferedReader(uri: url), onMediaPlaylist: onMediaPlaylist)
+    func parseMasterPlaylist(url: URL, onMediaPlaylist:
+        ((_ : MediaPlaylist) -> Void)? = nil) -> MasterPlaylist {
+        return parseMasterPlaylist(reader: URLBufferedReader(uri: url), onMediaPlaylist: onMediaPlaylist)
     }
 
     /**
@@ -54,9 +51,9 @@ public extension ManifestBuilder {
      *
      * Convenience method that uses a StringBufferedReader as source for the manifest.
      */
-    func parseMediaPlaylistFromString(_ string: String, mediaPlaylist: MediaPlaylist = MediaPlaylist(),
-                                      onMediaSegment:((_ segment: MediaSegment) -> Void)? = nil) -> MediaPlaylist {
-        return parseMediaPlaylist(StringBufferedReader(string: string),
+    func parseMediaPlaylist(string: String, mediaPlaylist: MediaPlaylist = MediaPlaylist(),
+                                      onMediaSegment:((_ : MediaSegment) -> Void)? = nil) -> MediaPlaylist {
+        return parseMediaPlaylist(reader: StringBufferedReader(string: string),
                                   mediaPlaylist: mediaPlaylist, onMediaSegment: onMediaSegment)
     }
 
@@ -65,9 +62,9 @@ public extension ManifestBuilder {
      *
      * Convenience method that uses a FileBufferedReader as source for the manifest.
      */
-    func parseMediaPlaylistFromFile(_ path: String, mediaPlaylist: MediaPlaylist = MediaPlaylist(),
-                                    onMediaSegment: ((_ segment: MediaSegment) -> Void)? = nil) -> MediaPlaylist {
-        return parseMediaPlaylist(FileBufferedReader(path: path),
+    func parseMediaPlaylist(filePath path: String, mediaPlaylist: MediaPlaylist = MediaPlaylist(),
+                                    onMediaSegment: ((_ : MediaSegment) -> Void)? = nil) -> MediaPlaylist {
+        return parseMediaPlaylist(reader: FileBufferedReader(path: path),
                                   mediaPlaylist: mediaPlaylist, onMediaSegment: onMediaSegment)
     }
 
@@ -76,9 +73,9 @@ public extension ManifestBuilder {
      *
      * Convenience method that uses a URLBufferedReader as source for the manifest.
      */
-    func parseMediaPlaylistFromURL(_ url: URL, mediaPlaylist: MediaPlaylist = MediaPlaylist(),
-                                   onMediaSegment: ((_ segment: MediaSegment) -> Void)? = nil) -> MediaPlaylist {
-        return parseMediaPlaylist(URLBufferedReader(uri: url),
+    func parseMediaPlaylist(url: URL, mediaPlaylist: MediaPlaylist = MediaPlaylist(),
+                                   onMediaSegment: ((_ : MediaSegment) -> Void)? = nil) -> MediaPlaylist {
+        return parseMediaPlaylist(reader: URLBufferedReader(uri: url),
                                   mediaPlaylist: mediaPlaylist, onMediaSegment: onMediaSegment)
     }
 
@@ -86,20 +83,20 @@ public extension ManifestBuilder {
      * Parses the master manifest found at the URL and all the referenced media playlist manifests recursively.
      */
     
-    func parse(_ url: URL, onMediaPlaylist:
-        ((_ playlist: MediaPlaylist) -> Void)? = nil, onMediaSegment:
-        ((_ segment: MediaSegment) -> Void)? = nil) -> MasterPlaylist {
+    func parse(url: URL, onMediaPlaylist:
+        ((_ : MediaPlaylist) -> Void)? = nil, onMediaSegment:
+        ((_ : MediaSegment) -> Void)? = nil) -> MasterPlaylist {
         // Parse master
-        let master = parseMasterPlaylistFromURL(url, onMediaPlaylist: onMediaPlaylist)
+        let master = parseMasterPlaylist(url: url, onMediaPlaylist: onMediaPlaylist)
         for playlist in master.playlists {
             if let path = playlist.path {
                 let mediaURL: URL
                 if let absoluteURL = URL(string: path) {
                     mediaURL = absoluteURL
                 } else {
-                    mediaURL = url.URLByReplacingLastPathComponent(path)
+                    mediaURL = url.URLByReplacingLastPathComponent(newPathComponent: path)
                 }
-                let _ = parseMediaPlaylistFromURL(mediaURL, mediaPlaylist: playlist, onMediaSegment: onMediaSegment)
+                let _ = parseMediaPlaylist(url: mediaURL, mediaPlaylist: playlist, onMediaSegment: onMediaSegment)
             }
         }
         return master
@@ -110,8 +107,8 @@ private extension ManifestBuilder {
     /**
      * Parses Master playlist manifests
      */
-    func parseMasterPlaylist(_ reader: BufferedReader, onMediaPlaylist:
-        ((_ playlist: MediaPlaylist) -> Void)?) -> MasterPlaylist {
+    func parseMasterPlaylist(reader: BufferedReader, onMediaPlaylist:
+        ((_ : MediaPlaylist) -> Void)?) -> MasterPlaylist {
         var masterPlaylist = MasterPlaylist()
         var currentMediaPlaylist: MediaPlaylist?
 
@@ -134,10 +131,10 @@ private extension ManifestBuilder {
                     // #EXT-X-STREAM-INF:PROGRAM-ID=1, BANDWIDTH=200000
                     // TODO: Can we guarentee the order of these attributes?
                     let mediaPlaylist = MediaPlaylist()
-                    if let programIdString = try? line.replace("(.*)=(\\d+),(.*)", replacement: "$2") {
+                    if let programIdString = try? line.replace(pattern: "(.*)=(\\d+),(.*)", replacement: "$2") {
                         mediaPlaylist.programId = Int(programIdString)!
                     }
-                    if let bandwidthString = try? line.replace("(.*),(.*)=(\\d+)(.*)", replacement: "$3") {
+                    if let bandwidthString = try? line.replace(pattern: "(.*),(.*)=(\\d+)(.*)", replacement: "$3") {
                         mediaPlaylist.bandwidth = Int(bandwidthString)!
                     }
                     currentMediaPlaylist = mediaPlaylist
@@ -145,11 +142,11 @@ private extension ManifestBuilder {
                     let mediaPlaylist = MediaPlaylist()
                     // #EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID="subs",NAME="English",\
                     // DEFAULT=NO,AUTOSELECT=YES,FORCED=NO,LANGUAGE="eng",URI="..."
-                    mediaPlaylist.language = try? line.replace("(.*)LANGUAGE=\"(.*?)\"(.*)", replacement: "$2")
-                    mediaPlaylist.type = try? line.replace("(.*)TYPE=(.*?),(.*)", replacement: "$2")
-                    mediaPlaylist.path = try? line.replace("(.*)URI=\"(.*?)\"(.*)", replacement: "$2")
+                    mediaPlaylist.language = try? line.replace(pattern: "(.*)LANGUAGE=\"(.*?)\"(.*)", replacement: "$2")
+                    mediaPlaylist.type = try? line.replace(pattern: "(.*)TYPE=(.*?),(.*)", replacement: "$2")
+                    mediaPlaylist.path = try? line.replace(pattern: "(.*)URI=\"(.*?)\"(.*)", replacement: "$2")
 
-                    masterPlaylist.addPlaylist(mediaPlaylist)
+                    masterPlaylist.addPlaylist(playlist: mediaPlaylist)
                     onMediaPlaylist?(mediaPlaylist)
                 }
             } else if line.hasPrefix("#") {
@@ -160,7 +157,7 @@ private extension ManifestBuilder {
                 if let playlist = currentMediaPlaylist {
                     // Update playlist
                     playlist.path = line
-                    masterPlaylist.addPlaylist(playlist)
+                    masterPlaylist.addPlaylist(playlist: playlist)
 
                     // Call handler
                     onMediaPlaylist?(playlist)
@@ -177,8 +174,8 @@ private extension ManifestBuilder {
     /**
      * Parses Media Playlist manifests
      */
-    func parseMediaPlaylist(_ reader: BufferedReader, mediaPlaylist: MediaPlaylist = MediaPlaylist(),
-                                    onMediaSegment: ((_ segment: MediaSegment) -> Void)?) -> MediaPlaylist {
+    func parseMediaPlaylist(reader: BufferedReader, mediaPlaylist: MediaPlaylist = MediaPlaylist(),
+                                    onMediaSegment: ((_ : MediaSegment) -> Void)?) -> MediaPlaylist {
         var currentSegment: MediaSegment?
         var currentURI: String?
         var currentSequence = 0
@@ -201,7 +198,7 @@ private extension ManifestBuilder {
                     // Ok Do nothing
                 } else if line.hasPrefix("#EXT-X-VERSION") {
                     do {
-                        let version = try line.replace("(.*):(\\d+)(.*)", replacement: "$2")
+                        let version = try line.replace(pattern: "(.*):(\\d+)(.*)", replacement: "$2")
                         mediaPlaylist.version = Int(version)
                     } catch {
                         print("Failed to parse the version of media playlist. Line = \(line)")
@@ -209,7 +206,7 @@ private extension ManifestBuilder {
 
                 } else if line.hasPrefix("#EXT-X-TARGETDURATION") {
                     do {
-                        let durationString = try line.replace("(.*):(\\d+)(.*)", replacement: "$2")
+                        let durationString = try line.replace(pattern: "(.*):(\\d+)(.*)", replacement: "$2")
                         mediaPlaylist.targetDuration = Int(durationString)
                     } catch {
                         print("Failed to parse the target duration of media playlist. Line = \(line)")
@@ -217,7 +214,7 @@ private extension ManifestBuilder {
 
                 } else if line.hasPrefix("#EXT-X-MEDIA-SEQUENCE") {
                     do {
-                        let mediaSequence = try line.replace("(.*):(\\d+)(.*)", replacement: "$2")
+                        let mediaSequence = try line.replace(pattern: "(.*):(\\d+)(.*)", replacement: "$2")
                         if let mediaSequenceExtracted = Int(mediaSequence) {
                             mediaPlaylist.mediaSequence = mediaSequenceExtracted
                             currentSequence = mediaSequenceExtracted
@@ -229,8 +226,8 @@ private extension ManifestBuilder {
                 } else if line.hasPrefix("#EXTINF") {
                     currentSegment = MediaSegment()
                     do {
-                        let segmentDurationString = try line.replace("(.*):(\\d.*),(.*)", replacement: "$2")
-                        let segmentTitle = try line.replace("(.*):(\\d.*),(.*)", replacement: "$3")
+                        let segmentDurationString = try line.replace(pattern: "(.*):(\\d.*),(.*)", replacement: "$2")
+                        let segmentTitle = try line.replace(pattern: "(.*):(\\d.*),(.*)", replacement: "$3")
                         currentSegment!.duration = Float(segmentDurationString)
                         currentSegment!.title = segmentTitle
                     } catch {
@@ -239,8 +236,8 @@ private extension ManifestBuilder {
                 } else if line.hasPrefix("#EXT-X-BYTERANGE") {
                     if line.contains("@") {
                         do {
-                            let subrangeLength = try line.replace("(.*):(\\d.*)@(.*)", replacement: "$2")
-                            let subrangeStart = try line.replace("(.*):(\\d.*)@(.*)", replacement: "$3")
+                            let subrangeLength = try line.replace(pattern: "(.*):(\\d.*)@(.*)", replacement: "$2")
+                            let subrangeStart = try line.replace(pattern: "(.*):(\\d.*)@(.*)", replacement: "$3")
                             currentSegment!.subrangeLength = Int(subrangeLength)
                             currentSegment!.subrangeStart = Int(subrangeStart)
                         } catch {
@@ -248,7 +245,7 @@ private extension ManifestBuilder {
                         }
                     } else {
                         do {
-                            let subrangeLength = try line.replace("(.*):(\\d.*)", replacement: "$2")
+                            let subrangeLength = try line.replace(pattern: "(.*):(\\d.*)", replacement: "$2")
                             currentSegment!.subrangeLength = Int(subrangeLength)
                             currentSegment!.subrangeStart = nil
                         } catch {
@@ -269,7 +266,7 @@ private extension ManifestBuilder {
                     currentSegmentExists.path = line
                     currentSegmentExists.sequence = currentSequence
                     currentSequence += 1
-                    mediaPlaylist.addSegment(currentSegmentExists)
+                    mediaPlaylist.addSegment(segment: currentSegmentExists)
                     if let callableOnMediaSegment = onMediaSegment {
                         callableOnMediaSegment(currentSegmentExists)
                     }

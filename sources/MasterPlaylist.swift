@@ -19,7 +19,7 @@ open class MasterPlaylist: Playlist {
         return m3u8String.data(using: String.Encoding.utf8)
     }
 
-    func addPlaylist(_ playlist: MediaPlaylist) {
+    func addPlaylist(playlist: MediaPlaylist) {
         playlist.masterPlaylist = self
         playlists.append(playlist)
     }
@@ -29,11 +29,11 @@ public extension MasterPlaylist {
 
     subscript(idx: Int) -> MediaPlaylist? {
         get {
-            return getPlaylist(idx)
+            return getPlaylist(index: idx)
         }
     }
 
-    func getPlaylist(_ index: Int) -> MediaPlaylist? {
+    func getPlaylist(index: Int) -> MediaPlaylist? {
         if index >= playlists.count {
             return nil
         }

@@ -28,7 +28,7 @@ open class MediaPlaylist: Playlist {
 
     var segments = [MediaSegment]()
 
-    func addSegment(_ segment: MediaSegment) {
+    func addSegment(segment: MediaSegment) {
         segments.append(segment)
     }
 }
@@ -37,11 +37,11 @@ public extension MediaPlaylist {
 
     subscript(idx: Int) -> MediaSegment? {
         get {
-            return getSegment(idx)
+            return getSegment(index: idx)
         }
     }
 
-    func getSegment(_ index: Int) -> MediaSegment? {
+    func getSegment(index: Int) -> MediaSegment? {
         if index >= segments.count {
             return nil
         }

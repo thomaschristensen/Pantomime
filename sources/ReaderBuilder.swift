@@ -15,19 +15,19 @@ open class ReaderBuilder {
         case stringreader, httpreader, filereader
     }
 
-    static func createURLReader(_ reference: URL) -> BufferedReader {
+    static func createURLReader(reference: URL) -> BufferedReader {
         return URLBufferedReader(uri: reference)
     }
 
-    static func createStringReader(_ reference: String) -> BufferedReader {
+    static func createStringReader(reference: String) -> BufferedReader {
         return StringBufferedReader(string: reference)
     }
 
-    static func createFileReader(_ reference: String) -> BufferedReader? {
+    static func createFileReader(reference: String) -> BufferedReader? {
         return FileBufferedReader(path: reference)
     }
 
-    static func createReader(_ reader: ReaderTypes, reference: String) throws -> BufferedReader {
+    static func createReader(reader: ReaderTypes, reference: String) throws -> BufferedReader {
 
         switch reader {
         case .stringreader:

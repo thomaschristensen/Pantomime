@@ -9,7 +9,7 @@ import Foundation
 extension String {
 
     // String.replace(); similar to JavaScript's String.replace() and Ruby's String.gsub()
-    func replace(_ pattern: String, replacement: String) throws -> String {
+    func replace(pattern: String, replacement: String) throws -> String {
 
         let regex = try NSRegularExpression(pattern: pattern, options: [.caseInsensitive])
 
