@@ -200,4 +200,21 @@ class PantomimeTests: XCTestCase {
             XCTAssertEqual(181, manifest.playlists[3].segments.count, "Segments not correctly parsed")
         }
     }
+
+    func testFullParseWithFullPathInManifests() {
+        let builder = ManifestBuilder()
+        if let url = NSURL(string: "https://mnmedias.api.telequebec.tv/m3u8/29880.m3u8") {
+            let manifest = builder.parse(url, onMediaPlaylist: {
+                (media: MediaPlaylist) -> Void in
+                XCTAssertNotNil(media.path)
+            }, onMediaSegment: {
+                (segment: MediaSegment) -> Void in
+                let mediaManifestURL = url.URLByReplacingLastPathComponent(segment.mediaPlaylist!.path!)
+                let segmentURL = mediaManifestURL!.URLByReplacingLastPathComponent(segment.path!)
+                XCTAssertNotNil(segmentURL!.absoluteString)
+            })
+            XCTAssertEqual(7, manifest.playlists.count, "Number of media playlists in master does not match")
+            XCTAssertEqual(105, manifest.playlists[3].segments.count, "Segments not correctly parsed")
+        }
+    }
 }

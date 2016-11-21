@@ -245,11 +245,21 @@ public class ManifestBuilder {
         let master = parseMasterPlaylistFromURL(url, onMediaPlaylist: onMediaPlaylist)
         for playlist in master.playlists {
             if let path = playlist.path {
-                if let mediaURL = url.URLByReplacingLastPathComponent(path) {
-                    parseMediaPlaylistFromURL(mediaURL,
-                            mediaPlaylist: playlist, onMediaSegment: onMediaSegment)
-                }
 
+                // Detect if manifests are referred to with protocol
+                if path.hasPrefix("http") || path.hasPrefix("file") {
+                    // Full path used
+                    if let mediaURL = NSURL(string: path) {
+                        parseMediaPlaylistFromURL(mediaURL,
+                                mediaPlaylist: playlist, onMediaSegment: onMediaSegment)
+                    }
+                } else {
+                    // Relative path used
+                    if let mediaURL = url.URLByReplacingLastPathComponent(path) {
+                        parseMediaPlaylistFromURL(mediaURL,
+                                mediaPlaylist: playlist, onMediaSegment: onMediaSegment)
+                    }
+                }
             }
         }
         return master
