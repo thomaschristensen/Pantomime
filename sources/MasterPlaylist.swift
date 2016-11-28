@@ -8,24 +8,39 @@
 
 import Foundation
 
-public class MasterPlaylist {
+open class MasterPlaylist: Playlist {
     var playlists = [MediaPlaylist]()
-    public var path: String?
 
-    public init() {}
+    open internal(set) var path: String?
 
-    public func addPlaylist(playlist: MediaPlaylist) {
-        playlists.append(playlist)
+    // Raw data
+    open internal(set) var m3u8String: String = ""
+    open var m3u8Data: Data? {
+        return m3u8String.data(using: String.Encoding.utf8)
     }
 
-    public func getPlaylist(index: Int) -> MediaPlaylist? {
+    func addPlaylist(playlist: MediaPlaylist) {
+        playlist.masterPlaylist = self
+        playlists.append(playlist)
+    }
+}
+
+public extension MasterPlaylist {
+
+    subscript(idx: Int) -> MediaPlaylist? {
+        get {
+            return getPlaylist(index: idx)
+        }
+    }
+
+    func getPlaylist(index: Int) -> MediaPlaylist? {
         if index >= playlists.count {
             return nil
         }
         return playlists[index]
     }
 
-    public func getPlaylistCount() -> Int {
+    func getPlaylistCount() -> Int {
         return playlists.count
     }
 }

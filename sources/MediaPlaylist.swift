@@ -5,37 +5,54 @@
 
 import Foundation
 
-public class MediaPlaylist {
-    var masterPlaylist: MasterPlaylist?
+open class MediaPlaylist: Playlist {
 
-    public var programId: Int = 0
-    public var bandwidth: Int = 0
-    public var path: String?
-    public var version: Int?
-    public var targetDuration: Int?
-    public var mediaSequence: Int?
+    weak var masterPlaylist: MasterPlaylist?
+
+    open internal(set) var programId: Int = 0
+    open internal(set) var bandwidth: Int = 0
+    open internal(set) var path: String?
+    open internal(set) var version: Int?
+    open internal(set) var targetDuration: Int?
+    open internal(set) var mediaSequence: Int?
+
+    // Raw data
+    open internal(set) var m3u8String: String = ""
+    open var m3u8Data: Data? {
+        return m3u8String.data(using: String.Encoding.utf8)
+    }
+
+    // Advanced attributes
+    open internal(set) var type: String?
+    open internal(set) var language: String?
+
     var segments = [MediaSegment]()
 
-    public init() {
-
-    }
-
-    public func addSegment(segment: MediaSegment) {
+    func addSegment(segment: MediaSegment) {
         segments.append(segment)
     }
+}
 
-    public func getSegment(index: Int) -> MediaSegment? {
+public extension MediaPlaylist {
+
+    subscript(idx: Int) -> MediaSegment? {
+        get {
+            return getSegment(index: idx)
+        }
+    }
+
+    func getSegment(index: Int) -> MediaSegment? {
         if index >= segments.count {
             return nil
         }
         return segments[index]
     }
 
-    public func getSegmentCount() -> Int {
+    func getSegmentCount() -> Int {
         return segments.count
     }
 
-    public func duration() -> Float {
+    func duration() -> Float {
         var dur: Float = 0.0
         for item in segments {
             dur = dur + item.duration!
@@ -43,7 +60,7 @@ public class MediaPlaylist {
         return dur
     }
 
-    public func getMaster() -> MasterPlaylist? {
-        return self.masterPlaylist
+    func getMaster() -> MasterPlaylist? {
+        return masterPlaylist
     }
 }

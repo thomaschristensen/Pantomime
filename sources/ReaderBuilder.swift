@@ -5,17 +5,17 @@
 
 import Foundation
 
-public class ReaderBuilder {
+open class ReaderBuilder {
 
-    enum ReaderBuilderError: ErrorType {
-        case IllegalReference(reference:String)
+    public enum ReaderBuilderError: Error {
+        case illegalReference(reference:String)
     }
 
-    enum ReaderTypes {
-        case STRINGREADER, HTTPREADER, FILEREADER
+    public enum ReaderTypes {
+        case stringreader, httpreader, filereader
     }
 
-    static func createURLReader(reference: NSURL) -> BufferedReader {
+    static func createURLReader(reference: URL) -> BufferedReader {
         return URLBufferedReader(uri: reference)
     }
 
@@ -30,15 +30,15 @@ public class ReaderBuilder {
     static func createReader(reader: ReaderTypes, reference: String) throws -> BufferedReader {
 
         switch reader {
-        case .STRINGREADER:
+        case .stringreader:
             return StringBufferedReader(string: reference)
-        case .FILEREADER:
+        case .filereader:
             return FileBufferedReader(path: reference)
-        case .HTTPREADER:
-            if let uriOK = NSURL(string: reference) {
+        case .httpreader:
+            if let uriOK = URL(string: reference) {
                 return URLBufferedReader(uri: uriOK)
             } else {
-                throw ReaderBuilderError.IllegalReference(reference: reference)
+                throw ReaderBuilderError.illegalReference(reference: reference)
             }
         }
     }

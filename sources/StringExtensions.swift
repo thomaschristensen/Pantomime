@@ -11,11 +11,11 @@ extension String {
     // String.replace(); similar to JavaScript's String.replace() and Ruby's String.gsub()
     func replace(pattern: String, replacement: String) throws -> String {
 
-        let regex = try NSRegularExpression(pattern: pattern, options: [.CaseInsensitive])
+        let regex = try NSRegularExpression(pattern: pattern, options: [.caseInsensitive])
 
-        return regex.stringByReplacingMatchesInString(
-            self,
-            options: [.WithTransparentBounds],
+        return regex.stringByReplacingMatches(
+            in: self,
+            options: [.withTransparentBounds],
             range: NSRange(location: 0, length: self.characters.count),
             withTemplate: replacement
         )

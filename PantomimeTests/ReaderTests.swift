@@ -9,16 +9,16 @@ import XCTest
 class ReaderTests: XCTestCase {
     func testReaderBuilder() {
         do {
-            let stringReader = try ReaderBuilder.createReader(.STRINGREADER, reference: "This is a line\nThis is another")
+            let stringReader = try ReaderBuilder.createReader(reader: .stringreader, reference: "This is a line\nThis is another")
             XCTAssert(stringReader is StringBufferedReader)
             XCTAssertEqual("This is a line", stringReader.readLine())
             XCTAssertEqual("This is another", stringReader.readLine())
             XCTAssertNil(stringReader.readLine())
             XCTAssertNil(stringReader.readLine())
 
-            let bundle = NSBundle(forClass: self.dynamicType)
-            let path = bundle.pathForResource("media", ofType: "m3u8")!
-            let fileReader = try ReaderBuilder.createReader(.FILEREADER, reference: path)
+            let bundle = Bundle(for: type(of: self))
+            let path = bundle.path(forResource: "media", ofType: "m3u8")!
+            let fileReader = try ReaderBuilder.createReader(reader: .filereader, reference: path)
             XCTAssert(fileReader is FileBufferedReader)
             XCTAssertEqual("#EXTM3U", fileReader.readLine())
             XCTAssertEqual("#This is a comment", fileReader.readLine())
@@ -27,7 +27,7 @@ class ReaderTests: XCTestCase {
             }
             XCTAssertNil(fileReader.readLine())
 
-            let httpReader = try ReaderBuilder.createReader(.HTTPREADER, reference: "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8")
+            let httpReader = try ReaderBuilder.createReader(reader: .httpreader, reference: "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8")
             XCTAssert(httpReader is URLBufferedReader)
             XCTAssertEqual("#EXTM3U", httpReader.readLine())
             XCTAssertEqual("#EXT-X-STREAM-INF:PROGRAM-ID=1, BANDWIDTH=200000", httpReader.readLine())

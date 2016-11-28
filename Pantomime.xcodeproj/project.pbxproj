@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E279FB91DECBB3900528BC1 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = D812A8311D932EA5009A2163 /* Playlist.swift */; };
+		5E279FBA1DECBB3A00528BC1 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = D812A8311D932EA5009A2163 /* Playlist.swift */; };
 		5ED0327E1D6F1710006DE1F3 /* ManifestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED032791D6F1710006DE1F3 /* ManifestBuilder.swift */; };
 		5ED0327F1D6F1710006DE1F3 /* MediaSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED0327A1D6F1710006DE1F3 /* MediaSegment.swift */; };
 		5ED032801D6F1710006DE1F3 /* MediaPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED0327B1D6F1710006DE1F3 /* MediaPlaylist.swift */; };
@@ -42,7 +44,6 @@
 		7FBCAC77789A6B78BFB3B2BE /* ReaderBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCAFFB2E9DF6E75D5AF46D /* ReaderBuilder.swift */; };
 		7FBCACF2178BC111C07423B5 /* URLBufferedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCAAA79D01BF5CEBA7261A /* URLBufferedReader.swift */; };
 		7FBCAD486D18CBDBCA89C3F6 /* NSURLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCA9CB6FB8AA516DB9C538 /* NSURLExtension.swift */; };
-		7FBCAD4D0E61F2913881E262 /* PlaylistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCAFC77C9DA4C80FAEA0C2 /* PlaylistTests.swift */; };
 		7FBCAD932FF257481CDB95DE /* StringBufferedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCA22C61E0D299DF542F4B /* StringBufferedReader.swift */; };
 		7FBCADB79746F44D9AC5F47C /* URLBufferedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCAAA79D01BF5CEBA7261A /* URLBufferedReader.swift */; };
 		7FBCAE6AB452BA202FB48490 /* NSURLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCA9CB6FB8AA516DB9C538 /* NSURLExtension.swift */; };
@@ -56,6 +57,7 @@
 		ACE597901C18830D0031451F /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 9E6CAA491C149579009D9093 /* LICENSE */; };
 		ACE597A01C18832E0031451F /* Pantomime.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 9E6CAA471C148EC1009D9093 /* Pantomime.podspec */; };
 		ACE597A11C18832E0031451F /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 9E6CAA491C149579009D9093 /* LICENSE */; };
+		D812A8321D932EA5009A2163 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = D812A8311D932EA5009A2163 /* Playlist.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,7 +86,6 @@
 		7FBCA9CB6FB8AA516DB9C538 /* NSURLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSURLExtension.swift; path = sources/NSURLExtension.swift; sourceTree = "<group>"; };
 		7FBCAAA79D01BF5CEBA7261A /* URLBufferedReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = URLBufferedReader.swift; path = sources/URLBufferedReader.swift; sourceTree = "<group>"; };
 		7FBCAAE76466B9E53DA130F3 /* BufferedReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BufferedReader.swift; path = sources/BufferedReader.swift; sourceTree = "<group>"; };
-		7FBCAFC77C9DA4C80FAEA0C2 /* PlaylistTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTests.swift; sourceTree = "<group>"; };
 		7FBCAFFB2E9DF6E75D5AF46D /* ReaderBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReaderBuilder.swift; path = sources/ReaderBuilder.swift; sourceTree = "<group>"; };
 		9E195B101C6B766D00D924CB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E4BBDFA1C09EB7F00220716 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -98,6 +99,7 @@
 		9EDCE3F51C09D211002FA4A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ACE597951C18830D0031451F /* Pantomime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pantomime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACE597A61C18832E0031451F /* Pantomime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pantomime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D812A8311D932EA5009A2163 /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Playlist.swift; path = sources/Playlist.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,12 +138,13 @@
 		9E31D62A1C185ED0004E0980 /* sources */ = {
 			isa = PBXGroup;
 			children = (
+				D812A8311D932EA5009A2163 /* Playlist.swift */,
 				5ED032791D6F1710006DE1F3 /* ManifestBuilder.swift */,
 				5ED0327A1D6F1710006DE1F3 /* MediaSegment.swift */,
 				5ED0327B1D6F1710006DE1F3 /* MediaPlaylist.swift */,
+				5ED032911D6F7539006DE1F3 /* MasterPlaylist.swift */,
 				5ED0327C1D6F1710006DE1F3 /* StringExtensions.swift */,
 				5ED0327D1D6F1710006DE1F3 /* StreamReader.swift */,
-				5ED032911D6F7539006DE1F3 /* MasterPlaylist.swift */,
 				7FBCAAE76466B9E53DA130F3 /* BufferedReader.swift */,
 				7FBCA03857771FD1265B089F /* FileBufferedReader.swift */,
 				7FBCAFFB2E9DF6E75D5AF46D /* ReaderBuilder.swift */,
@@ -187,7 +190,6 @@
 				9EDCE3F51C09D211002FA4A7 /* Info.plist */,
 				9EDCE3F31C09D211002FA4A7 /* PantomimeTests.swift */,
 				7FBCA10A0EB4EAA0CD4AB5EF /* ReaderTests.swift */,
-				7FBCAFC77C9DA4C80FAEA0C2 /* PlaylistTests.swift */,
 			);
 			path = PantomimeTests;
 			sourceTree = "<group>";
@@ -300,7 +302,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Thomas Christensen";
 				TargetAttributes = {
 					9EDCE3E31C09D211002FA4A7 = {
@@ -391,7 +393,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint autocorrect\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		9EB9C85B1C92C271005C0541 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -414,6 +416,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5ED032821D6F1710006DE1F3 /* StreamReader.swift in Sources */,
+				D812A8321D932EA5009A2163 /* Playlist.swift in Sources */,
 				5ED032811D6F1710006DE1F3 /* StringExtensions.swift in Sources */,
 				5ED0327F1D6F1710006DE1F3 /* MediaSegment.swift in Sources */,
 				5ED032921D6F7539006DE1F3 /* MasterPlaylist.swift in Sources */,
@@ -434,7 +437,6 @@
 			files = (
 				9EDCE3F41C09D211002FA4A7 /* PantomimeTests.swift in Sources */,
 				7FBCA81E63E9441F3AC22BB7 /* ReaderTests.swift in Sources */,
-				7FBCAD4D0E61F2913881E262 /* PlaylistTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,6 +445,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5ED0328C1D6F1735006DE1F3 /* StreamReader.swift in Sources */,
+				5E279FB91DECBB3900528BC1 /* Playlist.swift in Sources */,
 				5ED032891D6F1731006DE1F3 /* StringExtensions.swift in Sources */,
 				5ED032851D6F1728006DE1F3 /* MediaSegment.swift in Sources */,
 				5ED032931D6F7539006DE1F3 /* MasterPlaylist.swift in Sources */,
@@ -462,6 +465,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5ED0328B1D6F1734006DE1F3 /* StreamReader.swift in Sources */,
+				5E279FBA1DECBB3A00528BC1 /* Playlist.swift in Sources */,
 				5ED0328A1D6F1731006DE1F3 /* StringExtensions.swift in Sources */,
 				5ED032861D6F1728006DE1F3 /* MediaSegment.swift in Sources */,
 				5ED032941D6F7539006DE1F3 /* MasterPlaylist.swift in Sources */,
@@ -501,8 +505,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -550,8 +556,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -584,6 +592,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -595,7 +604,7 @@
 				PRODUCT_NAME = Pantomime;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0.1;
 			};
 			name = Debug;
 		};
@@ -604,6 +613,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -615,7 +625,7 @@
 				PRODUCT_NAME = Pantomime;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0.1;
 			};
 			name = Release;
 		};
@@ -623,11 +633,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = PantomimeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nordija.PantomimeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0.1;
 			};
 			name = Debug;
 		};
@@ -635,12 +646,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = PantomimeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nordija.PantomimeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0.1;
 			};
 			name = Release;
 		};
@@ -648,6 +660,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -662,7 +675,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0.1;
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Debug;
@@ -671,6 +684,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -685,7 +699,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0.1;
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Release;
@@ -709,7 +723,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0.1;
 				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Debug;
@@ -733,7 +747,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0.1;
 				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Release;
