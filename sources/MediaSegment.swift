@@ -5,21 +5,21 @@
 
 import Foundation
 
-public class MediaSegment {
+open class MediaSegment {
     var mediaPlaylist: MediaPlaylist?
-    public var duration: Float?
-    public var sequence: Int = 0
-    public var subrangeLength: Int?
-    public var subrangeStart: Int?
-    public var title: String?
-    public var discontinuity: Bool = false
-    public var path: String?
+    open var duration: Float?
+    open var sequence: Int = 0
+    open var subrangeLength: Int?
+    open var subrangeStart: Int?
+    open var title: String?
+    open var discontinuity: Bool = false
+    open var path: String?
 
     public init() {
 
     }
 
-    public func getMediaPlaylist() -> MediaPlaylist? {
+    open func getMediaPlaylist() -> MediaPlaylist? {
         return self.mediaPlaylist
     }
 }
