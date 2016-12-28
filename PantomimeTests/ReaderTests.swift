@@ -9,25 +9,25 @@ import XCTest
 class ReaderTests: XCTestCase {
     func testReaderBuilder() {
         do {
-            let stringReader = try ReaderBuilder.createReader(.STRINGREADER, reference: "This is a line\nThis is another")
+            let stringReader = try ReaderBuilder.createReader(.stringreader, reference: "This is a line\nThis is another")
             XCTAssert(stringReader is StringBufferedReader)
             XCTAssertEqual("This is a line", stringReader.readLine())
             XCTAssertEqual("This is another", stringReader.readLine())
             XCTAssertNil(stringReader.readLine())
             XCTAssertNil(stringReader.readLine())
 
-            let bundle = NSBundle(forClass: self.dynamicType)
-            let path = bundle.pathForResource("media", ofType: "m3u8")!
-            let fileReader = try ReaderBuilder.createReader(.FILEREADER, reference: path)
+            let bundle = Bundle(for: type(of: self))
+            let path = bundle.path(forResource: "media", ofType: "m3u8")!
+            let fileReader = try ReaderBuilder.createReader(.filereader, reference: path)
             XCTAssert(fileReader is FileBufferedReader)
             XCTAssertEqual("#EXTM3U", fileReader.readLine())
             XCTAssertEqual("#This is a comment", fileReader.readLine())
             for _ in 1...10 {
-                fileReader.readLine()
+                _ = fileReader.readLine()
             }
             XCTAssertNil(fileReader.readLine())
 
-            let httpReader = try ReaderBuilder.createReader(.HTTPREADER, reference: "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8")
+            let httpReader = try ReaderBuilder.createReader(.httpreader, reference: "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8")
             XCTAssert(httpReader is URLBufferedReader)
             XCTAssertEqual("#EXTM3U", httpReader.readLine())
             XCTAssertEqual("#EXT-X-STREAM-INF:PROGRAM-ID=1, BANDWIDTH=200000", httpReader.readLine())
@@ -41,5 +41,10 @@ class ReaderTests: XCTestCase {
         } catch {
             XCTFail("Not able to construct valid buffered reader instances")
         }
+    }
+    
+    func testBuilder_WithoutProgramID_ShouldNotFail() {
+        let builder = ManifestBuilder()
+        _ = builder.parseMasterPlaylistFromString("#EXTM3U\n#EXT-X-VERSION:2\n#EXT-X-STREAM-INF:BANDWIDTH=300000\ntrack_0_300/playlist.m3u8?t=1482930352&h=VBNpRGL+iqMhSUWVV3IQ4w==\n")
     }
 }

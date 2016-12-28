@@ -5,40 +5,40 @@
 
 import Foundation
 
-public class ReaderBuilder {
+open class ReaderBuilder {
 
-    enum ReaderBuilderError: ErrorType {
-        case IllegalReference(reference:String)
+    enum ReaderBuilderError: Error {
+        case illegalReference(reference:String)
     }
 
     enum ReaderTypes {
-        case STRINGREADER, HTTPREADER, FILEREADER
+        case stringreader, httpreader, filereader
     }
 
-    static func createURLReader(reference: NSURL) -> BufferedReader {
+    static func createURLReader(_ reference: URL) -> BufferedReader {
         return URLBufferedReader(uri: reference)
     }
 
-    static func createStringReader(reference: String) -> BufferedReader {
+    static func createStringReader(_ reference: String) -> BufferedReader {
         return StringBufferedReader(string: reference)
     }
 
-    static func createFileReader(reference: String) -> BufferedReader? {
+    static func createFileReader(_ reference: String) -> BufferedReader? {
         return FileBufferedReader(path: reference)
     }
 
-    static func createReader(reader: ReaderTypes, reference: String) throws -> BufferedReader {
+    static func createReader(_ reader: ReaderTypes, reference: String) throws -> BufferedReader {
 
         switch reader {
-        case .STRINGREADER:
+        case .stringreader:
             return StringBufferedReader(string: reference)
-        case .FILEREADER:
+        case .filereader:
             return FileBufferedReader(path: reference)
-        case .HTTPREADER:
-            if let uriOK = NSURL(string: reference) {
+        case .httpreader:
+            if let uriOK = URL(string: reference) {
                 return URLBufferedReader(uri: uriOK)
             } else {
-                throw ReaderBuilderError.IllegalReference(reference: reference)
+                throw ReaderBuilderError.illegalReference(reference: reference)
             }
         }
     }

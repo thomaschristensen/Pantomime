@@ -7,7 +7,7 @@ import Foundation
 
 // Extend the NSURL object with helpers
 
-public extension NSURL {
+public extension URL {
     /**
         Replaces the last path component of the URL with the path component and returns a new URL or nil.
 
@@ -16,10 +16,8 @@ public extension NSURL {
         - Returns: A new URL object or nil
      */
     @available(iOS 4.0, *)
-    public func URLByReplacingLastPathComponent(pathComponent: String) -> NSURL? {
-        if let tmpurl = self.URLByDeletingLastPathComponent {
-            return tmpurl.URLByAppendingPathComponent(pathComponent)
-        }
-        return nil
+    public func URLByReplacingLastPathComponent(_ pathComponent: String) -> URL? {
+        let tmpurl = self.deletingLastPathComponent()
+        return tmpurl.appendingPathComponent(pathComponent)
     }
 }
