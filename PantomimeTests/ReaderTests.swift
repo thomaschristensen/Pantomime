@@ -42,4 +42,9 @@ class ReaderTests: XCTestCase {
             XCTFail("Not able to construct valid buffered reader instances")
         }
     }
+    
+    func testBuilder_WithoutProgramID_ShouldNotFail() {
+        let builder = ManifestBuilder()
+        _ = builder.parseMasterPlaylistFromString("#EXTM3U\n#EXT-X-VERSION:2\n#EXT-X-STREAM-INF:BANDWIDTH=300000\ntrack_0_300/playlist.m3u8?t=1482930352&h=VBNpRGL+iqMhSUWVV3IQ4w==\n")
+    }
 }

@@ -36,16 +36,21 @@ open class ManifestBuilder {
 
                 } else if line.hasPrefix("#EXT-X-STREAM-INF") {
                     // #EXT-X-STREAM-INF:PROGRAM-ID=1, BANDWIDTH=200000
+                    // #EXT-X-STREAM-INF:BANDWIDTH=200000
                     currentMediaPlaylist = MediaPlaylist()
-                    do {
-                        let programIdString = try line.replace("(.*)=(\\d+),(.*)", replacement: "$2")
-                        let bandwidthString = try line.replace("(.*),(.*)=(\\d+)(.*)", replacement: "$3")
-                        if let currentMediaPlaylistExist = currentMediaPlaylist {
+                    if let currentMediaPlaylistExist = currentMediaPlaylist {
+                        do {
+                            let programIdString = try line.replace("(.*)PROGRAM-ID=(\\d+)(.*)", replacement: "$2")
                             currentMediaPlaylistExist.programId = Int(programIdString)!
-                            currentMediaPlaylistExist.bandwidth = Int(bandwidthString)!
+                        } catch {
+                            print("Failed to parse program-id on master playlist. Line = \(line)")
                         }
-                    } catch {
-                        print("Failed to parse program-id and bandwidth on master playlist. Line = \(line)")
+                        do {
+                            let bandwidthString = try line.replace("(.*)BANDWIDTH=(\\d+)(.*)", replacement: "$2")
+                            currentMediaPlaylistExist.bandwidth = Int(bandwidthString)!
+                        } catch {
+                            print("Failed to parse bandwidth on master playlist. Line = \(line)")
+                        }
                     }
 
                 }

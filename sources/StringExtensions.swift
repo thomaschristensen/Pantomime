@@ -12,11 +12,17 @@ extension String {
     func replace(_ pattern: String, replacement: String) throws -> String {
 
         let regex = try NSRegularExpression(pattern: pattern, options: [.caseInsensitive])
-
+        let options: NSRegularExpression.MatchingOptions = [.withTransparentBounds]
+        let range = NSRange(location: 0, length: self.characters.count)
+        let matches = regex.matches(in: self, options: options, range: range)
+        guard matches.count > 0 else {
+            throw NSError(domain: "Pantomime", code: 123, userInfo: ["description": "Couldn't find matches with RegEx"])
+        }
+        
         return regex.stringByReplacingMatches(
             in: self,
-            options: [.withTransparentBounds],
-            range: NSRange(location: 0, length: self.characters.count),
+            options: options,
+            range: range,
             withTemplate: replacement
         )
     }
