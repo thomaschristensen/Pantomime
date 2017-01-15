@@ -5,7 +5,7 @@
 
 import Foundation
 
-public class FileBufferedReader: BufferedReader {
+open class FileBufferedReader: BufferedReader {
     var _fileName: String
     var streamReader: StreamReader
 
@@ -14,11 +14,11 @@ public class FileBufferedReader: BufferedReader {
         streamReader = StreamReader(path: _fileName)!
     }
 
-    public func close() {
+    open func close() {
         streamReader.close()
     }
 
-    public func readLine() -> String? {
+    open func readLine() -> String? {
         return streamReader.nextLine()
     }
 }
