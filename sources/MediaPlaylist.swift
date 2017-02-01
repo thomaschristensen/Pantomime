@@ -5,37 +5,37 @@
 
 import Foundation
 
-public class MediaPlaylist {
+open class MediaPlaylist {
     var masterPlaylist: MasterPlaylist?
 
-    public var programId: Int = 0
-    public var bandwidth: Int = 0
-    public var path: String?
-    public var version: Int?
-    public var targetDuration: Int?
-    public var mediaSequence: Int?
+    open var programId: Int = 0
+    open var bandwidth: Int = 0
+    open var path: String?
+    open var version: Int?
+    open var targetDuration: Int?
+    open var mediaSequence: Int?
     var segments = [MediaSegment]()
 
     public init() {
 
     }
 
-    public func addSegment(segment: MediaSegment) {
+    open func addSegment(_ segment: MediaSegment) {
         segments.append(segment)
     }
 
-    public func getSegment(index: Int) -> MediaSegment? {
+    open func getSegment(_ index: Int) -> MediaSegment? {
         if index >= segments.count {
             return nil
         }
         return segments[index]
     }
 
-    public func getSegmentCount() -> Int {
+    open func getSegmentCount() -> Int {
         return segments.count
     }
 
-    public func duration() -> Float {
+    open func duration() -> Float {
         var dur: Float = 0.0
         for item in segments {
             dur = dur + item.duration!
@@ -43,7 +43,7 @@ public class MediaPlaylist {
         return dur
     }
 
-    public func getMaster() -> MasterPlaylist? {
+    open func getMaster() -> MasterPlaylist? {
         return self.masterPlaylist
     }
 }

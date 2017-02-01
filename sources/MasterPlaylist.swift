@@ -8,24 +8,24 @@
 
 import Foundation
 
-public class MasterPlaylist {
+open class MasterPlaylist {
     var playlists = [MediaPlaylist]()
-    public var path: String?
+    open var path: String?
 
     public init() {}
 
-    public func addPlaylist(playlist: MediaPlaylist) {
+    open func addPlaylist(_ playlist: MediaPlaylist) {
         playlists.append(playlist)
     }
 
-    public func getPlaylist(index: Int) -> MediaPlaylist? {
+    open func getPlaylist(_ index: Int) -> MediaPlaylist? {
         if index >= playlists.count {
             return nil
         }
         return playlists[index]
     }
 
-    public func getPlaylistCount() -> Int {
+    open func getPlaylistCount() -> Int {
         return playlists.count
     }
 }
