@@ -208,7 +208,7 @@ open class ManifestBuilder {
     * Convenience method that uses a StringBufferedReader as source for the manifest.
     */
     open func parseMediaPlaylistFromString(_ string: String, mediaPlaylist: MediaPlaylist = MediaPlaylist(),
-                                             onMediaSegment:((_ segment: MediaSegment) -> Void)? = nil) -> MediaPlaylist {
+                                            onMediaSegment:((_ segment: MediaSegment) -> Void)? = nil) -> MediaPlaylist {
         return parseMediaPlaylist(StringBufferedReader(string: string),
                 mediaPlaylist: mediaPlaylist, onMediaSegment: onMediaSegment)
     }
@@ -229,7 +229,7 @@ open class ManifestBuilder {
     *
     * Convenience method that uses a URLBufferedReader as source for the manifest.
     */
-    open func parseMediaPlaylistFromURL(_ url: URL, mediaPlaylist: MediaPlaylist = MediaPlaylist(),
+    @discardableResult open func parseMediaPlaylistFromURL(_ url: URL, mediaPlaylist: MediaPlaylist = MediaPlaylist(),
                                           onMediaSegment: ((_ segment: MediaSegment) -> Void)? = nil) -> MediaPlaylist {
         return parseMediaPlaylist(URLBufferedReader(uri: url),
                 mediaPlaylist: mediaPlaylist, onMediaSegment: onMediaSegment)

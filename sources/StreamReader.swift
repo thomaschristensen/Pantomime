@@ -15,7 +15,8 @@ class StreamReader {
     let delimData: Data!
     var atEof: Bool = false
 
-    init?(path: String, delimiter: String = "\n", encoding: String.Encoding = String.Encoding.utf8, chunkSize: Int = 4096) {
+    init?(path: String, delimiter: String = "\n", encoding: String.Encoding = String.Encoding.utf8,
+          chunkSize: Int = 4096) {
         self.chunkSize = chunkSize
         self.encoding = encoding
 
@@ -50,7 +51,7 @@ class StreamReader {
         var range = buffer.range(of: delimData, options: [], in: NSRange(location: 0, length: buffer.length))
         while range.location == NSNotFound {
             let tmpData = fileHandle.readData(ofLength: chunkSize)
-            if tmpData.count == 0 {
+            if tmpData.isEmpty {
                 // EOF or read error.
                 atEof = true
                 if buffer.length > 0 {

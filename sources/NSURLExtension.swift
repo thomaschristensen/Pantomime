@@ -19,6 +19,5 @@ public extension URL {
     public func URLByReplacingLastPathComponent(_ pathComponent: String) -> URL? {
          let tmpurl = self.deletingLastPathComponent()
 				 return tmpurl.appendingPathComponent(pathComponent)
-			
     }
 }

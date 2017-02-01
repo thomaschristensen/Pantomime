@@ -23,7 +23,7 @@ class ReaderTests: XCTestCase {
             XCTAssertEqual("#EXTM3U", fileReader.readLine())
             XCTAssertEqual("#This is a comment", fileReader.readLine())
             for _ in 1...10 {
-                fileReader.readLine()
+                _ = fileReader.readLine()!
             }
             XCTAssertNil(fileReader.readLine())
 
