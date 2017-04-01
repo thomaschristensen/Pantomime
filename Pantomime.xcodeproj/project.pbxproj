@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27EDFCB21E9061B400945246 /* media3.m3u8 in Resources */ = {isa = PBXBuildFile; fileRef = 27EDFCB11E9061B400945246 /* media3.m3u8 */; };
 		5ED0327E1D6F1710006DE1F3 /* ManifestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED032791D6F1710006DE1F3 /* ManifestBuilder.swift */; };
 		5ED0327F1D6F1710006DE1F3 /* MediaSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED0327A1D6F1710006DE1F3 /* MediaSegment.swift */; };
 		5ED032801D6F1710006DE1F3 /* MediaPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED0327B1D6F1710006DE1F3 /* MediaPlaylist.swift */; };
@@ -69,6 +70,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		27EDFCB11E9061B400945246 /* media3.m3u8 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = media3.m3u8; sourceTree = "<group>"; };
 		5ED032791D6F1710006DE1F3 /* ManifestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManifestBuilder.swift; path = sources/ManifestBuilder.swift; sourceTree = "<group>"; };
 		5ED0327A1D6F1710006DE1F3 /* MediaSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaSegment.swift; path = sources/MediaSegment.swift; sourceTree = "<group>"; };
 		5ED0327B1D6F1710006DE1F3 /* MediaPlaylist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaPlaylist.swift; path = sources/MediaPlaylist.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				9EDCE3F31C09D211002FA4A7 /* PantomimeTests.swift */,
 				7FBCA10A0EB4EAA0CD4AB5EF /* ReaderTests.swift */,
 				7FBCAFC77C9DA4C80FAEA0C2 /* PlaylistTests.swift */,
+				27EDFCB11E9061B400945246 /* media3.m3u8 */,
 			);
 			path = PantomimeTests;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5ED0328F1D6F17BF006DE1F3 /* media2.m3u8 in Resources */,
+				27EDFCB21E9061B400945246 /* media3.m3u8 in Resources */,
 				5ED032961D6F7618006DE1F3 /* master.m3u8 in Resources */,
 				5ED032901D6F17BF006DE1F3 /* media.m3u8 in Resources */,
 			);

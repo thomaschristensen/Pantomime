@@ -10,6 +10,18 @@ import XCTest
 @testable import Pantomime
 
 class PantomimeTests: XCTestCase {
+    
+    func test3ParseMediaPlaylist() {
+        let bundle = Bundle(for: type(of: self))
+        let path = bundle.path(forResource: "media3", ofType: "m3u8")!
+        
+        let manifestBuilder = ManifestBuilder()
+        let mediaPlaylist = manifestBuilder.parseMediaPlaylistFromFile(path)
+        
+        XCTAssert(mediaPlaylist.segments.count == 1)
+        XCTAssert(mediaPlaylist.segments[0].title == "Hey this is working!")
+        XCTAssert(mediaPlaylist.segments[0].properties?["tvg-name"] == "example")
+    }
 
     func testParseMediaPlaylist() {
         let bundle = Bundle(for: type(of: self))
@@ -23,7 +35,7 @@ class PantomimeTests: XCTestCase {
 
         XCTAssert(mediaPlaylist.targetDuration == 10)
         XCTAssert(mediaPlaylist.mediaSequence == 0)
-        XCTAssert(mediaPlaylist.segments.count == 3)
+        XCTAssert(mediaPlaylist.segments.count == 4)
         XCTAssert(mediaPlaylist.segments[0].title == " no desc")
         XCTAssert(mediaPlaylist.segments[0].subrangeLength == 100)
         XCTAssert(mediaPlaylist.segments[0].subrangeStart == 40)

@@ -121,8 +121,12 @@ open class ManifestBuilder {
                 } else if line.hasPrefix("#EXTINF") {
                     currentSegment = MediaSegment()
                     do {
-                        let segmentDurationString = try line.replace("(.*):(\\d.*),(.*)", replacement: "$2")
-                        let segmentTitle = try line.replace("(.*):(\\d.*),(.*)", replacement: "$3")
+                        let generalRegex = "(.*):(-?[0-9]\\d*(\\.\\d+)?)(.*),(.*)"
+                        let segmentDurationString = try line.replace(generalRegex, replacement: "$2")
+                        let rawProperties = try line.replace(generalRegex, replacement: "$4")
+                        let segmentTitle = try line.replace(generalRegex, replacement: "$5")
+
+                        currentSegment!.properties = getProperties(in: rawProperties)
                         currentSegment!.duration = Float(segmentDurationString)
                         currentSegment!.title = segmentTitle
                     } catch {
@@ -170,6 +174,25 @@ open class ManifestBuilder {
         }
 
         return mediaPlaylist
+    }
+
+    func getProperties(in text: String) -> [String:String]? {
+        do {
+            let regex = try NSRegularExpression(pattern: "([a-zA-z-]*)=\"([a-zA-z0-9 ]*+)\"")
+            let nsString = text as NSString
+            let results = regex.matches(in: text, range: NSRange(location: 0, length: nsString.length))
+            let keys = results.map { nsString.substring(with: $0.rangeAt(1))}
+            let values = results.map { nsString.substring(with: $0.rangeAt(2))}
+            var result = [String:String]()
+            for (index, value) in values.enumerated() {
+                result[keys[index]] = value
+            }
+            return result
+//            return results.map { nsString.substring(with: $0.range)}
+        } catch let error {
+            print("Error: \(error.localizedDescription)")
+            return nil
+        }
     }
 
     /**

@@ -1,0 +1,4 @@
+#EXTM3U
+#This is a comment
+#EXTINF:-1 tvg-ID="" tvg-name="example" custom-attribute="" group-title="another example",Hey this is working!
+http://media.example.com/fourth.ts

@@ -10,3 +10,5 @@ http://media.example.com/first.ts
 http://media.example.com/second.ts
 #EXTINF:3.003,
 http://media.example.com/third.ts
+#EXTINF:-1 tvg-ID="" tvg-name="example" custom-attribute="" group-title="another example",title: of channel
+http://media.example.com/fourth.ts
