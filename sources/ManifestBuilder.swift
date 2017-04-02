@@ -178,7 +178,7 @@ open class ManifestBuilder {
 
     func getProperties(in text: String) -> [String:String]? {
         do {
-            let regex = try NSRegularExpression(pattern: "([a-zA-z-]*)=\"([a-zA-z0-9 ]*+)\"")
+            let regex = try NSRegularExpression(pattern: "([a-zA-z-]*)=\"(.*?)\"")
             let nsString = text as NSString
             let results = regex.matches(in: text, range: NSRange(location: 0, length: nsString.length))
             let keys = results.map { nsString.substring(with: $0.rangeAt(1))}
