@@ -25,6 +25,8 @@ class ReaderTests: XCTestCase {
             for _ in 1...10 {
                 _ = fileReader.readLine()!
             }
+            XCTAssertEqual("#EXTINF:-1 tvg-ID=\"\" tvg-name=\"example\" custom-attribute=\"\" group-title=\"another example\",title: of channel", fileReader.readLine())
+            XCTAssertEqual("http://media.example.com/fourth.ts", fileReader.readLine())
             XCTAssertNil(fileReader.readLine())
 
             let httpReader = try ReaderBuilder.createReader(.httpreader, reference: "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8")

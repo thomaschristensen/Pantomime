@@ -1,0 +1,6 @@
+#EXTM3U
+#This is a comment
+#EXTINF:-1 tvg-ID="" tvg-name="example" custom-attribute="" group-title="another example",Hey this is working!
+http://media.example.com/fourth.ts
+#EXTINF:-1 tvg-ID="" tvg-name="Kingsman: The Secret Service" tvg-logo="https://images-na.ssl-images-amazon.com/images/M/MV5BMTkxMjgwMDM4Ml5BMl5BanBnXkFtZTgwMTk3NTIwNDE@._V1_SY1000_CR0,0,675,1000_AL_.jpg" group-title="VOD: Action",Kingsman: The Secret Service
+http://client-proiptv.com:8080/movie/AwC7WSEgSy/C1IxqxuT2k/9745.mkv
