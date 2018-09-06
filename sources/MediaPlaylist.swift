@@ -38,7 +38,7 @@ open class MediaPlaylist {
     open func duration() -> Float {
         var dur: Float = 0.0
         for item in segments {
-            dur = dur + item.duration!
+            dur += item.duration!
         }
         return dur
     }
