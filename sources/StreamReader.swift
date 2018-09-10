@@ -79,14 +79,14 @@ class StreamReader {
     }
 
     /// Start reading from the beginning of file.
-    func rewind() -> Void {
+    func rewind() {
         fileHandle.seek(toFileOffset: 0)
         buffer.length = 0
         atEof = false
     }
 
     /// Close the underlying file. No reading must be done after calling this method.
-    func close() -> Void {
+    func close() {
         fileHandle?.closeFile()
         fileHandle = nil
     }

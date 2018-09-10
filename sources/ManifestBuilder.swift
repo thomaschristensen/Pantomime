@@ -71,8 +71,9 @@ open class ManifestBuilder {
     /**
     * Parses Media Playlist manifests
     */
-    fileprivate func parseMediaPlaylist(_ reader: BufferedReader, mediaPlaylist: MediaPlaylist = MediaPlaylist(),
-                                    onMediaSegment: ((_ segment: MediaSegment) -> Void)?) -> MediaPlaylist {
+    fileprivate func parseMediaPlaylist(_ reader: BufferedReader,
+                                        mediaPlaylist: MediaPlaylist = MediaPlaylist(),
+                                        onMediaSegment: ((_ segment: MediaSegment) -> Void)?) -> MediaPlaylist {
         var currentSegment: MediaSegment?
         var currentURI: String?
         var currentSequence = 0
@@ -207,8 +208,9 @@ open class ManifestBuilder {
     *
     * Convenience method that uses a StringBufferedReader as source for the manifest.
     */
-    open func parseMediaPlaylistFromString(_ string: String, mediaPlaylist: MediaPlaylist = MediaPlaylist(),
-                                            onMediaSegment:((_ segment: MediaSegment) -> Void)? = nil) -> MediaPlaylist {
+    open func parseMediaPlaylistFromString(_ string: String,
+                                           mediaPlaylist: MediaPlaylist = MediaPlaylist(),
+                                           onMediaSegment:((_ segment: MediaSegment) -> Void)? = nil) -> MediaPlaylist {
         return parseMediaPlaylist(StringBufferedReader(string: string),
                 mediaPlaylist: mediaPlaylist, onMediaSegment: onMediaSegment)
     }
@@ -218,8 +220,9 @@ open class ManifestBuilder {
     *
     * Convenience method that uses a FileBufferedReader as source for the manifest.
     */
-    open func parseMediaPlaylistFromFile(_ path: String, mediaPlaylist: MediaPlaylist = MediaPlaylist(),
-                                           onMediaSegment: ((_ segment: MediaSegment) -> Void)? = nil) -> MediaPlaylist {
+    open func parseMediaPlaylistFromFile(_ path: String,
+                                         mediaPlaylist: MediaPlaylist = MediaPlaylist(),
+                                         onMediaSegment: ((_ segment: MediaSegment) -> Void)? = nil) -> MediaPlaylist {
         return parseMediaPlaylist(FileBufferedReader(path: path),
                 mediaPlaylist: mediaPlaylist, onMediaSegment: onMediaSegment)
     }
@@ -229,8 +232,10 @@ open class ManifestBuilder {
     *
     * Convenience method that uses a URLBufferedReader as source for the manifest.
     */
-    @discardableResult open func parseMediaPlaylistFromURL(_ url: URL, mediaPlaylist: MediaPlaylist = MediaPlaylist(),
-                                          onMediaSegment: ((_ segment: MediaSegment) -> Void)? = nil) -> MediaPlaylist {
+    @discardableResult
+    open func parseMediaPlaylistFromURL(_ url: URL,
+                                        mediaPlaylist: MediaPlaylist = MediaPlaylist(),
+                                        onMediaSegment: ((_ segment: MediaSegment) -> Void)? = nil) -> MediaPlaylist {
         return parseMediaPlaylist(URLBufferedReader(uri: url),
                 mediaPlaylist: mediaPlaylist, onMediaSegment: onMediaSegment)
     }
@@ -238,9 +243,9 @@ open class ManifestBuilder {
     /**
     * Parses the master manifest found at the URL and all the referenced media playlist manifests recursively.
     */
-    open func parse(_ url: URL, onMediaPlaylist:
-                    ((_ playlist: MediaPlaylist) -> Void)? = nil, onMediaSegment:
-                    ((_ segment: MediaSegment) -> Void)? = nil) -> MasterPlaylist {
+    open func parse(_ url: URL,
+                    onMediaPlaylist: ((_ playlist: MediaPlaylist) -> Void)? = nil,
+                    onMediaSegment: ((_ segment: MediaSegment) -> Void)? = nil) -> MasterPlaylist {
         // Parse master
         let master = parseMasterPlaylistFromURL(url, onMediaPlaylist: onMediaPlaylist)
         for playlist in master.playlists {

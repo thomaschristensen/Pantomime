@@ -16,7 +16,7 @@ extension String {
         return regex.stringByReplacingMatches(
             in: self,
             options: [.withTransparentBounds],
-            range: NSRange(location: 0, length: self.characters.count),
+            range: NSRange(location: 0, length: self.count),
             withTemplate: replacement
         )
     }
