@@ -12,6 +12,7 @@ open class MediaSegment {
     open var subrangeLength: Int?
     open var subrangeStart: Int?
     open var title: String?
+    open var rawLine: String?
     open var discontinuity: Bool = false
     open var path: String?
 
