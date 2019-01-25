@@ -123,8 +123,8 @@ open class ManifestBuilder {
                     do {
                         let segmentDurationString = try line.replace("(.*):(\\d.*),(.*)", replacement: "$2")
                         let segmentTitle = try line.replace("(.*):(\\d.*),(.*)", replacement: "$3")
-                        currentSegment!.duration = Float(segmentDurationString)
-                        currentSegment!.title = segmentTitle
+                        currentSegment?.duration = Float(segmentDurationString)
+                        currentSegment?.title = segmentTitle
                     } catch {
                         print("Failed to parse the segment duration and title. Line = \(line)")
                     }
@@ -133,22 +133,22 @@ open class ManifestBuilder {
                         do {
                             let subrangeLength = try line.replace("(.*):(\\d.*)@(.*)", replacement: "$2")
                             let subrangeStart = try line.replace("(.*):(\\d.*)@(.*)", replacement: "$3")
-                            currentSegment!.subrangeLength = Int(subrangeLength)
-                            currentSegment!.subrangeStart = Int(subrangeStart)
+                            currentSegment?.subrangeLength = Int(subrangeLength)
+                            currentSegment?.subrangeStart = Int(subrangeStart)
                         } catch {
                             print("Failed to parse byte range. Line = \(line)")
                         }
                     } else {
                         do {
                             let subrangeLength = try line.replace("(.*):(\\d.*)", replacement: "$2")
-                            currentSegment!.subrangeLength = Int(subrangeLength)
-                            currentSegment!.subrangeStart = nil
+                            currentSegment?.subrangeLength = Int(subrangeLength)
+                            currentSegment?.subrangeStart = nil
                         } catch {
                             print("Failed to parse the byte range. Line = \(line)")
                         }
                     }
                 } else if line.hasPrefix("#EXT-X-DISCONTINUITY") {
-                    currentSegment!.discontinuity = true
+                    currentSegment?.discontinuity = true
                 }
 
             } else if line.hasPrefix("#") {
