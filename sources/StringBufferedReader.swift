@@ -26,7 +26,7 @@ open class StringBufferedReader: BufferedReader {
             return nil
         }
         let result = _buffer[_line]
-        _line = _line + 1
+        _line += 1
         return result
     }
 }
