@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Pantomime"
-  s.version      = "0.1.4"
+  s.version      = "0.2.0"
   s.summary      = "Parsing of M3U8 manifest files for Swift"
 
   s.description      = <<-DESC
@@ -11,6 +11,7 @@ Pod::Spec.new do |s|
     Supports Master and Media playlist manifest files.
                        DESC
 
+  s.swift_version = '5.0'
   s.homepage     = "https://github.com/thomaschristensen/Pantomime"
   s.license      = "MIT"
   s.author       = { "Thomas Christensen" => "tchristensen@nordija.com" }
